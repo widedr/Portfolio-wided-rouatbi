@@ -1,45 +1,48 @@
 "use client";
 
-import {
-  Sparkles,
-  PenTool,
-  Users,
-  LayoutGrid,
-  Bot,
-  Workflow,
-} from "lucide-react";
+import { Search, PenTool, Wrench, Sparkles } from "lucide-react";
 import { FadeUp, RevealWords } from "./motion/Reveal";
 
-const skills = [
+const expertise = [
   {
-    icon: Users,
-    title: "UX Research",
-    desc: "Interviews, parcours utilisateurs, tests d'usabilité pour ancrer chaque décision dans le réel.",
+    icon: Search,
+    title: "Recherche",
+    items: [
+      "Interviews utilisateurs",
+      "Personas utilisateurs",
+      "Analyse",
+      "Benchmark",
+      "Design centré utilisateur",
+    ],
   },
   {
     icon: PenTool,
-    title: "UI Design",
-    desc: "Interfaces soignées, systèmes typographiques et visuels cohérents, du wireframe au pixel-perfect.",
+    title: "Design",
+    items: [
+      "Brainstorming",
+      "Wireframing",
+      "Design System",
+      "UI Design",
+      "Prototypage",
+    ],
   },
   {
-    icon: LayoutGrid,
-    title: "Design Systems",
-    desc: "Composants réutilisables et documentés pour accélérer le passage du design au code.",
-  },
-  {
-    icon: Bot,
-    title: "AI-Augmented Design",
-    desc: "Intégration d'outils IA (génération, prototypage, automatisation) dans le process créatif.",
-  },
-  {
-    icon: Workflow,
-    title: "Product Strategy",
-    desc: "Cadrage produit, priorisation et roadmap pour des solutions SaaS B2B à fort enjeu métier.",
+    icon: Wrench,
+    title: "Outils",
+    items: ["Figma", "Adobe XD", "Sketch", "Adobe Creative Cloud", "Miro", "Whimsical"],
   },
   {
     icon: Sparkles,
-    title: "Prototypage",
-    desc: "Prototypes interactifs à haute fidélité (Figma) pour valider vite, itérer mieux.",
+    title: "Soft skills",
+    items: [
+      "Collaboration",
+      "Communication",
+      "Curiosité & apprentissage continu",
+      "Diversité de projets",
+      "Multitâche",
+      "Créativité",
+      "Leadership",
+    ],
   },
 ];
 
@@ -50,8 +53,8 @@ const marqueeItems = [
   "Prototypage",
   "AI-Augmented Design",
   "Product Strategy",
-  "Data Visualization",
-  "Design-to-Code",
+  "Fintech",
+  "E-commerce",
 ];
 
 export default function About() {
@@ -68,25 +71,37 @@ export default function About() {
         <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           <FadeUp>
             <p className="text-2xl font-light leading-relaxed text-foreground sm:text-3xl">
-              Designer produit passionnée par la conception
-              d&apos;expériences digitales{" "}
+              Passionnée par la création{" "}
               <span className="text-gradient font-medium">
-                intuitives, élégantes et augmentées par l&apos;IA
+                d&apos;expériences utilisateur intuitives, élégantes et
+                augmentées par l&apos;IA
               </span>
               .
             </p>
             <p className="mt-6 max-w-md text-base leading-relaxed text-muted">
-              Je travaille à la croisée du design, de la donnée et des
-              outils d&apos;intelligence artificielle pour concevoir des
-              produits qui simplifient des sujets complexes — notamment dans
-              le SaaS B2B. Mon approche : comprendre le métier en profondeur,
-              prototyper vite, et livrer des interfaces que les équipes tech
-              peuvent construire sans friction.
+              Designer UX/UI, j&apos;aime concevoir des solutions digitales
+              qui allient sens du détail et approche centrée utilisateur.
+              Avec plus de 4 ans d&apos;expérience dans les secteurs de la
+              fintech, de l&apos;e-commerce et du voyage, j&apos;ai appris à
+              traduire des besoins métier complexes en interfaces claires —
+              et j&apos;intègre aujourd&apos;hui l&apos;intelligence
+              artificielle à chaque étape de mon process créatif, de la
+              recherche au prototypage.
             </p>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {["Fintech", "E-commerce", "Voyage", "SaaS B2B"].map((sector) => (
+                <span
+                  key={sector}
+                  className="rounded-full border border-border px-3 py-1 text-xs text-muted"
+                >
+                  {sector}
+                </span>
+              ))}
+            </div>
           </FadeUp>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {skills.map((s, i) => (
+            {expertise.map((s, i) => (
               <FadeUp key={s.title} delay={i * 0.06}>
                 <div
                   data-cursor-hover
@@ -96,9 +111,16 @@ export default function About() {
                   <h3 className="mt-4 font-display text-sm text-foreground">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    {s.desc}
-                  </p>
+                  <ul className="mt-3 flex flex-wrap gap-1.5">
+                    {s.items.map((item) => (
+                      <li
+                        key={item}
+                        className="rounded-full bg-surface-2 px-2.5 py-1 text-xs text-muted"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </FadeUp>
             ))}

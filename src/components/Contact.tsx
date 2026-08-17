@@ -34,8 +34,9 @@ export default function Contact() {
 
         <FadeUp>
           <p className="max-w-xl text-base text-muted sm:text-lg">
-            Un projet, une idée, une opportunité ? Je suis toujours partante
-            pour échanger.
+            Partons ensemble à la conquête d&apos;interfaces engageantes et
+            centrées utilisateur. Un projet, une idée, une opportunité ? Je
+            suis toujours partante pour échanger.
           </p>
         </FadeUp>
 
