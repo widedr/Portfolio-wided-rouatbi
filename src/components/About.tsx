@@ -61,8 +61,9 @@ export default function About() {
   return (
     <section id="about" className="relative px-6 py-28 sm:px-10 sm:py-36">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-16 flex items-baseline gap-4">
+        <div className="mb-16 flex items-center gap-4">
           <span className="font-display text-sm text-violet">01</span>
+          <span className="h-px w-8 bg-gradient-to-r from-violet to-transparent" />
           <h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
             <RevealWords text="À propos" />
           </h2>
@@ -107,7 +108,9 @@ export default function About() {
                   data-cursor-hover
                   className="group h-full rounded-2xl border border-border bg-surface/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-violet/50 hover:bg-surface"
                 >
-                  <s.icon className="h-5 w-5 text-violet transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" />
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-violet/25 to-yellow/15 transition-transform duration-300 group-hover:scale-110">
+                    <s.icon className="h-5 w-5 text-violet transition-transform duration-300 group-hover:rotate-6" />
+                  </span>
                   <h3 className="mt-4 font-display text-sm text-foreground">
                     {s.title}
                   </h3>

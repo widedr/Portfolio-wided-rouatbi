@@ -25,8 +25,9 @@ export default function Contact() {
       </div>
 
       <div className="mx-auto max-w-6xl">
-        <div className="mb-10 flex items-baseline gap-4">
+        <div className="mb-10 flex items-center gap-4">
           <span className="font-display text-sm text-violet">04</span>
+          <span className="h-px w-8 bg-gradient-to-r from-violet to-transparent" />
           <h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
             <RevealWords text="Contact" />
           </h2>

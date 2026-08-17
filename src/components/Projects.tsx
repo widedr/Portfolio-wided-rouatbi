@@ -40,8 +40,9 @@ export default function Projects() {
   return (
     <section id="work" className="relative px-6 py-28 sm:px-10 sm:py-36">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-16 flex items-baseline gap-4">
+        <div className="mb-16 flex items-center gap-4">
           <span className="font-display text-sm text-violet">03</span>
+          <span className="h-px w-8 bg-gradient-to-r from-violet to-transparent" />
           <h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
             <RevealWords text="Projet phare" />
           </h2>

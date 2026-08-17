@@ -45,7 +45,7 @@ export default function TiltCard({
           background: useTransform(
             [glowX, glowY],
             ([gx, gy]) =>
-              `radial-gradient(500px circle at ${gx} ${gy}, rgba(138,123,255,0.18), transparent 65%)`
+              `radial-gradient(500px circle at ${gx} ${gy}, rgba(143,91,255,0.2), transparent 65%)`
           ),
         }}
         className="pointer-events-none absolute inset-0 z-10 rounded-[inherit]"

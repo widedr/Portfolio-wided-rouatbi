@@ -6,7 +6,11 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { RevealWords } from "./motion/Reveal";
 import Magnetic from "./motion/Magnetic";
 
-const roles = ["UX/UI Design", "Product Design", "AI-Augmented Design"];
+const stats = [
+  { value: "4+", label: "Ans d'expérience" },
+  { value: "3", label: "Secteurs — Fintech, E-commerce, Voyage" },
+  { value: "Neoshore", label: "Poste actuel, depuis mars 2026" },
+];
 
 export default function Hero() {
   return (
@@ -121,18 +125,20 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.9 }}
-          className="mt-10 flex flex-wrap gap-x-8 gap-y-2"
+          className="mt-12 grid max-w-2xl grid-cols-1 gap-6 border-t border-white/10 pt-8 sm:grid-cols-3"
         >
-          {roles.map((r) => (
-            <span
-              key={r}
-              className="text-xs uppercase tracking-[0.18em] text-white/50"
-            >
-              {r}
-            </span>
+          {stats.map((s) => (
+            <div key={s.label}>
+              <p className="font-display text-3xl font-bold text-yellow sm:text-4xl">
+                {s.value}
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-white/50">
+                {s.label}
+              </p>
+            </div>
           ))}
         </motion.div>
       </div>
