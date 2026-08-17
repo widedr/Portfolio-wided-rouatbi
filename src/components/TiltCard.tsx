@@ -33,24 +33,30 @@ export default function TiltCard({
   }
 
   return (
-    <motion.div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ rotateX, rotateY, transformPerspective: 1000 }}
-      className={className}
-    >
+    // Clipping (overflow-hidden/rounded corners) lives on this outer,
+    // non-transformed element — combining overflow-hidden with a 3D
+    // perspective transform on the same layer breaks image compositing
+    // in some Chromium builds (renders children as solid black).
+    <div className={className}>
       <motion.div
-        aria-hidden
-        style={{
-          background: useTransform(
-            [glowX, glowY],
-            ([gx, gy]) =>
-              `radial-gradient(500px circle at ${gx} ${gy}, rgba(143,91,255,0.2), transparent 65%)`
-          ),
-        }}
-        className="pointer-events-none absolute inset-0 z-10 rounded-[inherit]"
-      />
-      {children}
-    </motion.div>
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{ rotateX, rotateY, transformPerspective: 1000 }}
+        className="relative h-full w-full"
+      >
+        <motion.div
+          aria-hidden
+          style={{
+            background: useTransform(
+              [glowX, glowY],
+              ([gx, gy]) =>
+                `radial-gradient(500px circle at ${gx} ${gy}, rgba(143,91,255,0.2), transparent 65%)`
+            ),
+          }}
+          className="pointer-events-none absolute inset-0 z-10"
+        />
+        {children}
+      </motion.div>
+    </div>
   );
 }

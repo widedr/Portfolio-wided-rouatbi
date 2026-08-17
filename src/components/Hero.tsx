@@ -48,7 +48,7 @@ export default function Hero() {
             <div className="absolute -inset-2 rounded-full bg-yellow/20 blur-md" />
             <div className="relative h-full w-full overflow-hidden rounded-full border border-white/10 bg-surface">
               <Image
-                src="/images/profile.png"
+                src="/images/profile.jpg"
                 alt="Portrait de Wided Rouatbi"
                 fill
                 priority

@@ -27,19 +27,16 @@ npm run start   # servir le build de production
 npm run lint     # ESLint
 ```
 
-## ⚠️ Remplacer les visuels placeholder
+## Visuels
 
-Le design ne peut pas encore embarquer tes vraies images (elles ont été partagées dans la
-conversation, pas comme fichiers). Deux dégradés générés automatiquement servent de
-placeholders. Pour les remplacer, dépose tes fichiers **exactement** à ces emplacements
-(mêmes noms, mêmes extensions) :
-
-| Emplacement | Contenu attendu |
+| Emplacement | Contenu |
 | --- | --- |
-| `public/images/profile.png` | Ta photo de portrait (format portrait, ex. 4:5) |
-| `public/images/mathis-bs-dashboard.png` | La capture d'écran du dashboard "Patrimoine" de Mathis BS |
+| `public/images/profile.jpg` | Photo de portrait de Wided Rouatbi |
+| `public/images/mathis-bs-dashboard.jpg` | Capture d'écran du dashboard "Patrimoine" de Mathis BS |
 
-Aucun changement de code n'est nécessaire — les composants pointent déjà vers ces chemins.
+Le dashboard Mathis BS est recompressé en JPEG (~220 Ko, largeur 1800px) pour rester léger —
+regénérer avec `sharp` (`resize` + `jpeg({ quality: 82 })`) si tu remplaces le fichier par une
+nouvelle capture haute résolution.
 
 ## Structure
 

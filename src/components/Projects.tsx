@@ -112,7 +112,7 @@ export default function Projects() {
 
               <div className="relative order-1 aspect-[4/3] overflow-hidden border-b border-border bg-[#0b0a10] lg:order-2 lg:aspect-auto lg:border-b-0 lg:border-l">
                 <Image
-                  src="/images/mathis-bs-dashboard.png"
+                  src="/images/mathis-bs-dashboard.jpg"
                   alt="Dashboard patrimoine de la plateforme Mathis BS"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
