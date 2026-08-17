@@ -80,7 +80,9 @@ export default function Contact() {
             </Magnetic>
             <Magnetic>
               <a
-                href="tel:+21654367147"
+                href="https://wa.me/21654367147"
+                target="_blank"
+                rel="noopener noreferrer"
                 data-cursor-hover
                 className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-foreground transition-colors hover:border-violet"
               >

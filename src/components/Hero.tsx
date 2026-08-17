@@ -11,6 +11,7 @@ import {
   Layers,
   PenTool,
   Bot,
+  Palette,
 } from "lucide-react";
 import { RevealWords } from "./motion/Reveal";
 import Magnetic from "./motion/Magnetic";
@@ -110,8 +111,9 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-5 inline-flex items-center gap-2 rounded-md bg-violet px-4 py-2 shadow-lg shadow-violet/30"
+            className="mt-5 inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-surface/90 px-4 py-2.5 shadow-xl backdrop-blur-md"
           >
+            <Palette className="h-4 w-4 text-violet" />
             <span className="text-sm font-semibold text-white">
               UX/UI Designer
             </span>
