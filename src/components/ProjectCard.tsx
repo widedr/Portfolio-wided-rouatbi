@@ -50,7 +50,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
           <span
-            className={`absolute right-3 top-3 rounded-full border border-border/60 bg-background/70 px-2.5 py-0.5 text-[10px] uppercase tracking-wide backdrop-blur-sm ${style.text}`}
+            className={`absolute right-3 top-3 rounded-full border border-border/60 bg-background/95 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide shadow-[0_2px_10px_rgba(0,0,0,0.5)] backdrop-blur-md ${style.text}`}
           >
             {categoryLabels[project.category][lang]}
           </span>
