@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { type Project } from "@/lib/projects";
@@ -32,15 +33,26 @@ export default function ProjectCard({ project }: { project: Project }) {
         className="group block overflow-hidden rounded-2xl border border-border bg-surface/40 transition-colors duration-300 hover:border-violet/40 hover:bg-surface"
       >
         <div
-          className={`relative flex h-24 items-center justify-center overflow-hidden bg-gradient-to-br ${style.from} ${style.to}`}
+          className={`relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br ${style.from} ${style.to}`}
         >
+          {project.image ? (
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <span
+              className={`font-display text-5xl font-bold opacity-20 transition-transform duration-500 group-hover:scale-110 ${style.text}`}
+            >
+              {project.title.slice(0, 2).toUpperCase()}
+            </span>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
           <span
-            className={`font-display text-5xl font-bold opacity-20 transition-transform duration-500 group-hover:scale-110 ${style.text}`}
-          >
-            {project.title.slice(0, 2).toUpperCase()}
-          </span>
-          <span
-            className={`absolute right-3 top-3 rounded-full border border-border/60 bg-background/60 px-2.5 py-0.5 text-[10px] uppercase tracking-wide ${style.text}`}
+            className={`absolute right-3 top-3 rounded-full border border-border/60 bg-background/70 px-2.5 py-0.5 text-[10px] uppercase tracking-wide backdrop-blur-sm ${style.text}`}
           >
             {project.category}
           </span>

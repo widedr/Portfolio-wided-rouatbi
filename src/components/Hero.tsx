@@ -182,17 +182,16 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="relative mx-auto aspect-[4/5] w-full max-w-sm lg:max-w-none"
         >
-          <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-violet/30 via-pink/15 to-yellow/20 blur-3xl" />
-          <div className="relative h-full w-full overflow-hidden rounded-[2rem] border border-white/10 bg-surface shadow-2xl">
+          <div className="absolute inset-x-6 inset-y-10 rounded-full bg-gradient-to-br from-violet/40 via-pink/20 to-yellow/30 blur-3xl" />
+          <div className="relative h-full w-full">
             <Image
-              src="/images/profile.jpg"
+              src="/images/profile.png"
               alt="Portrait de Wided Rouatbi"
               fill
               priority
               sizes="(max-width: 1024px) 380px, 480px"
-              className="object-cover"
+              className="object-contain object-bottom drop-shadow-2xl"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
           </div>
 
           {badges.map((b) => (

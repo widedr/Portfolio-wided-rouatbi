@@ -37,6 +37,7 @@ export const projects: Project[] = [
   },
   {
     slug: "attunea",
+    image: "/images/projects/attunea.jpg",
     title: "Attunea",
     employer: "Satoripop",
     category: "Plateformes & Produits",
@@ -51,6 +52,7 @@ export const projects: Project[] = [
   },
   {
     slug: "five-guys",
+    image: "/images/projects/five-guys.jpg",
     title: "Five Guys",
     employer: "Satoripop",
     category: "Plateformes & Produits",
@@ -65,6 +67,7 @@ export const projects: Project[] = [
   },
   {
     slug: "travel-shaper",
+    image: "/images/projects/travel-shaper.jpg",
     title: "Travel Shaper",
     employer: "Satoripop",
     category: "Plateformes & Produits",
@@ -79,6 +82,7 @@ export const projects: Project[] = [
   },
   {
     slug: "carrefour-tn",
+    image: "/images/projects/carrefour-tn.jpg",
     title: "Carrefour.tn",
     employer: "Satoripop",
     category: "Plateformes & Produits",
@@ -93,6 +97,7 @@ export const projects: Project[] = [
   },
   {
     slug: "planet-tax-solution",
+    image: "/images/projects/planet-tax-solution.jpg",
     title: "Planet Tax Solution",
     employer: "Satoripop",
     category: "Plateformes & Produits",
@@ -107,6 +112,7 @@ export const projects: Project[] = [
   },
   {
     slug: "clever-harvest",
+    image: "/images/projects/clever-harvest.jpg",
     title: "Clever Harvest",
     employer: "Satoripop",
     category: "Plateformes & Produits",
@@ -121,6 +127,7 @@ export const projects: Project[] = [
   },
   {
     slug: "demco",
+    image: "/images/projects/demco.jpg",
     title: "Demco",
     employer: "WeAre Moon",
     category: "Plateformes & Produits",
@@ -135,6 +142,7 @@ export const projects: Project[] = [
   },
   {
     slug: "rizouya",
+    image: "/images/projects/rizouya.jpg",
     title: "Rizouya",
     employer: "WeAre Moon",
     category: "Plateformes & Produits",
@@ -149,6 +157,7 @@ export const projects: Project[] = [
   },
   {
     slug: "avs-vip-services",
+    image: "/images/projects/avs-vip-services.jpg",
     title: "AVS VIP Services",
     employer: "WeAre Moon",
     category: "Plateformes & Produits",
@@ -163,6 +172,7 @@ export const projects: Project[] = [
   },
   {
     slug: "clinique-veterinaire-hammamet",
+    image: "/images/projects/clinique-veterinaire-hammamet.jpg",
     title: "Clinique Vétérinaire Hammamet",
     employer: "Freelance",
     category: "Plateformes & Produits",
@@ -177,6 +187,7 @@ export const projects: Project[] = [
   },
   {
     slug: "bridge-global-funding",
+    image: "/images/projects/bridge-global-funding.jpg",
     title: "Bridge Global Funding",
     employer: "Satoripop",
     category: "Plateformes & Produits",
@@ -191,6 +202,7 @@ export const projects: Project[] = [
   },
   {
     slug: "convergence",
+    image: "/images/projects/convergence.jpg",
     title: "Convergence",
     employer: "Satoripop",
     category: "Sites web",
@@ -205,6 +217,7 @@ export const projects: Project[] = [
   },
   {
     slug: "fuze-digital-africa",
+    image: "/images/projects/fuze-digital-africa.jpg",
     title: "Fuzé Digital Africa",
     employer: "Satoripop",
     category: "Sites web",
@@ -219,6 +232,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ess-identity",
+    image: "/images/projects/ess-identity.jpg",
     title: "ESS Identity",
     employer: "Satoripop",
     category: "Sites web",
@@ -233,6 +247,7 @@ export const projects: Project[] = [
   },
   {
     slug: "masaya",
+    image: "/images/projects/masaya.jpg",
     title: "Masaya",
     employer: "Satoripop",
     category: "Apps mobiles",
@@ -247,6 +262,7 @@ export const projects: Project[] = [
   },
   {
     slug: "comptat-credit-debit",
+    image: "/images/projects/comptat-credit-debit.jpg",
     title: "Comptat Crédit Débit",
     employer: "Diginov / Design code",
     category: "Apps mobiles",
@@ -261,6 +277,7 @@ export const projects: Project[] = [
   },
   {
     slug: "sheikh-zayed-grand-mosque",
+    image: "/images/projects/sheikh-zayed-grand-mosque.jpg",
     title: "Sheikh Zayed Grand Mosque",
     employer: "Freelance",
     category: "Apps mobiles",
@@ -275,6 +292,7 @@ export const projects: Project[] = [
   },
   {
     slug: "kindeal",
+    image: "/images/projects/kindeal.jpg",
     title: "Kindeal",
     employer: "WeAre Moon",
     category: "Apps mobiles",
@@ -289,6 +307,7 @@ export const projects: Project[] = [
   },
   {
     slug: "split",
+    image: "/images/projects/split.jpg",
     title: "Split",
     employer: "WeAre Moon",
     category: "Apps mobiles",
@@ -303,6 +322,7 @@ export const projects: Project[] = [
   },
   {
     slug: "comptat-rh",
+    image: "/images/projects/comptat-rh.jpg",
     title: "Comptat RH",
     employer: "Diginov / Design code",
     category: "Apps mobiles",
@@ -314,6 +334,21 @@ export const projects: Project[] = [
       "L'objectif était de simplifier des démarches RH souvent perçues comme fastidieuses, avec des parcours courts pour poser un congé, badger ou consulter une attestation depuis son mobile.",
     ],
     tags: ["Design System", "Visual design"],
+  },
+  {
+    slug: "cash-money-soccer-tour",
+    image: "/images/projects/cash-money-soccer-tour.jpg",
+    title: "Cash Money Soccer Tour",
+    employer: "Satoripop",
+    category: "Sites web",
+    role: "UX/UI Designer",
+    duration: "1 mois",
+    description: "Landing page événementielle pour le plus grand tournoi de foot amateur, avec cagnotte à gagner.",
+    longDescription: [
+      "Cash Money Soccer Tour est la landing page du plus grand tournoi de football amateur, mettant en avant une cagnotte à gagner et un parcours d'inscription simple pour les équipes participantes.",
+      "L'identité visuelle sombre à dominante noir et or, portée par une photographie sportive dynamique, installe une tension compétitive dès l'arrivée sur le site — jusqu'au back-office de suivi des équipes, matchs et résultats.",
+    ],
+    tags: ["Landing page", "Visual design", "Dashboard"],
   },
 ];
 

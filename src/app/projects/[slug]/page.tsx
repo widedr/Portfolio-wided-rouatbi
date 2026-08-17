@@ -89,7 +89,7 @@ export default async function ProjectDetailPage({
                 fill
                 priority
                 sizes="(max-width: 896px) 100vw, 896px"
-                className="object-cover object-left-top"
+                className="object-cover object-top"
               />
             ) : (
               <div className="flex h-full items-center justify-center">
