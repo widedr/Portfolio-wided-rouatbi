@@ -3,20 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { type Project } from "@/lib/projects";
+import { type Project, type ProjectCategory, categoryLabels } from "@/lib/projects";
+import { useLanguage } from "@/lib/LanguageContext";
 
-const categoryStyle: Record<string, { from: string; to: string; text: string }> = {
-  "Plateformes & Produits": {
-    from: "from-violet/25",
-    to: "to-violet/5",
-    text: "text-violet",
-  },
-  "Sites web": { from: "from-yellow/25", to: "to-yellow/5", text: "text-yellow" },
-  "Apps mobiles": { from: "from-pink/25", to: "to-pink/5", text: "text-pink" },
-  "Produit SaaS": { from: "from-violet/25", to: "to-yellow/10", text: "text-violet" },
+const categoryStyle: Record<ProjectCategory, { from: string; to: string; text: string }> = {
+  platforms: { from: "from-violet/25", to: "to-violet/5", text: "text-violet" },
+  websites: { from: "from-yellow/25", to: "to-yellow/5", text: "text-yellow" },
+  mobile: { from: "from-pink/25", to: "to-pink/5", text: "text-pink" },
+  saas: { from: "from-violet/25", to: "to-yellow/10", text: "text-violet" },
 };
 
 export default function ProjectCard({ project }: { project: Project }) {
+  const { lang } = useLanguage();
   const style = categoryStyle[project.category];
 
   return (
@@ -54,7 +52,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           <span
             className={`absolute right-3 top-3 rounded-full border border-border/60 bg-background/70 px-2.5 py-0.5 text-[10px] uppercase tracking-wide backdrop-blur-sm ${style.text}`}
           >
-            {project.category}
+            {categoryLabels[project.category][lang]}
           </span>
           <h4 className="absolute bottom-3 left-4 right-4 font-display text-lg font-semibold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             {project.title}
@@ -62,10 +60,10 @@ export default function ProjectCard({ project }: { project: Project }) {
         </div>
         <div className="p-5">
           <p className="line-clamp-2 text-sm leading-relaxed text-muted">
-            {project.description}
+            {project.description[lang]}
           </p>
           <p className="mt-3 text-xs text-muted/70">
-            {project.role} · {project.duration}
+            {project.role} · {project.duration[lang]}
           </p>
           <div className="mt-3 flex flex-wrap gap-1.5">
             {project.tags.slice(0, 3).map((tag) => (

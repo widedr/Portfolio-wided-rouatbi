@@ -4,13 +4,7 @@ import { motion, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Magnetic from "./motion/Magnetic";
-
-const links = [
-  { href: "#about", label: "À propos" },
-  { href: "/projects", label: "Projets" },
-  { href: "#experience", label: "Parcours" },
-  { href: "#contact", label: "Contact" },
-];
+import { useLanguage, useT } from "@/lib/LanguageContext";
 
 export default function Navbar() {
   const { scrollYProgress } = useScroll();
@@ -18,6 +12,15 @@ export default function Navbar() {
   const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { lang, toggle } = useLanguage();
+  const t = useT();
+
+  const links = [
+    { href: "#about", label: t.nav.about },
+    { href: "/projects", label: t.nav.projects },
+    { href: "#experience", label: t.nav.experience },
+    { href: "#contact", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -61,36 +64,73 @@ export default function Navbar() {
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-gradient-to-r from-violet to-yellow transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
+            <button
+              onClick={toggle}
+              data-cursor-hover
+              aria-label="Changer de langue / Switch language"
+              className="relative flex items-center rounded-full border border-border p-1 text-xs font-medium"
+            >
+              <motion.span
+                layout
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                className="absolute h-6 w-8 rounded-full bg-violet/20"
+                style={{ left: lang === "fr" ? 4 : 36 }}
+              />
+              <span
+                className={`relative z-10 w-8 rounded-full py-1 text-center transition-colors ${
+                  lang === "fr" ? "text-foreground" : "text-muted"
+                }`}
+              >
+                FR
+              </span>
+              <span
+                className={`relative z-10 w-8 rounded-full py-1 text-center transition-colors ${
+                  lang === "en" ? "text-foreground" : "text-muted"
+                }`}
+              >
+                EN
+              </span>
+            </button>
             <Magnetic>
               <a
                 href="mailto:widedrouatbi@gmail.com"
                 data-cursor-hover
                 className="rounded-full border border-border px-4 py-2 text-sm text-foreground transition-colors hover:border-violet"
               >
-                Me contacter
+                {t.nav.cta}
               </a>
             </Magnetic>
           </div>
 
-          <button
-            onClick={() => setOpen((v) => !v)}
-            data-cursor-hover
-            className="flex flex-col gap-1.5 md:hidden"
-            aria-label="Menu"
-          >
-            <motion.span
-              animate={{ rotate: open ? 45 : 0, y: open ? 6 : 0 }}
-              className="h-px w-6 bg-foreground"
-            />
-            <motion.span
-              animate={{ opacity: open ? 0 : 1 }}
-              className="h-px w-6 bg-foreground"
-            />
-            <motion.span
-              animate={{ rotate: open ? -45 : 0, y: open ? -6 : 0 }}
-              className="h-px w-6 bg-foreground"
-            />
-          </button>
+          <div className="flex items-center gap-3 md:hidden">
+            <button
+              onClick={toggle}
+              data-cursor-hover
+              aria-label="Changer de langue / Switch language"
+              className="rounded-full border border-border px-3 py-1.5 text-xs font-medium text-foreground"
+            >
+              {lang === "fr" ? "FR" : "EN"}
+            </button>
+            <button
+              onClick={() => setOpen((v) => !v)}
+              data-cursor-hover
+              className="flex flex-col gap-1.5"
+              aria-label="Menu"
+            >
+              <motion.span
+                animate={{ rotate: open ? 45 : 0, y: open ? 6 : 0 }}
+                className="h-px w-6 bg-foreground"
+              />
+              <motion.span
+                animate={{ opacity: open ? 0 : 1 }}
+                className="h-px w-6 bg-foreground"
+              />
+              <motion.span
+                animate={{ rotate: open ? -45 : 0, y: open ? -6 : 0 }}
+                className="h-px w-6 bg-foreground"
+              />
+            </button>
+          </div>
         </nav>
 
         <motion.div

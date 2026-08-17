@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { projects, categories, type ProjectCategory } from "@/lib/projects";
+import { projects, categories, categoryLabels, type ProjectCategory } from "@/lib/projects";
 import ProjectCard from "./ProjectCard";
+import { useLanguage, useT } from "@/lib/LanguageContext";
 
-const filters: ("Tous" | ProjectCategory)[] = ["Tous", ...categories];
+const filters: ("all" | ProjectCategory)[] = ["all", ...categories];
 
 export default function ProjectsGrid({
   showFilters = true,
@@ -14,9 +15,11 @@ export default function ProjectsGrid({
   showFilters?: boolean;
   limit?: number;
 }) {
-  const [active, setActive] = useState<(typeof filters)[number]>("Tous");
+  const [active, setActive] = useState<(typeof filters)[number]>("all");
+  const { lang } = useLanguage();
+  const t = useT();
   const source = projects.filter((p) => !p.featured);
-  let visible = active === "Tous" ? source : source.filter((p) => p.category === active);
+  let visible = active === "all" ? source : source.filter((p) => p.category === active);
   if (limit) visible = visible.slice(0, limit);
 
   return (
@@ -34,7 +37,7 @@ export default function ProjectsGrid({
                   : "border-border text-muted hover:border-violet/50 hover:text-foreground"
               }`}
             >
-              {f}
+              {f === "all" ? t.projects.filterAll : categoryLabels[f][lang]}
             </button>
           ))}
         </div>

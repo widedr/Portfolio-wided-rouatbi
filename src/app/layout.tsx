@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import { LanguageProvider } from "@/lib/LanguageContext";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -57,10 +58,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground cursor-none-fine">
-        <SmoothScroll />
-        <CustomCursor />
-        <div aria-hidden className="grain" />
-        {children}
+        <LanguageProvider>
+          <SmoothScroll />
+          <CustomCursor />
+          <div aria-hidden className="grain" />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

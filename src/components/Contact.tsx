@@ -3,6 +3,7 @@
 import { ArrowUpRight, Mail, Phone } from "lucide-react";
 import { RevealWords, FadeUp } from "./motion/Reveal";
 import Magnetic from "./motion/Magnetic";
+import { useT } from "@/lib/LanguageContext";
 
 function LinkedinIcon({ className }: { className?: string }) {
   return (
@@ -31,6 +32,8 @@ function GithubIcon({ className }: { className?: string }) {
 }
 
 export default function Contact() {
+  const t = useT();
+
   return (
     <section id="contact" className="relative px-6 py-20 sm:px-10 sm:py-24">
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
@@ -39,18 +42,16 @@ export default function Contact() {
 
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 flex items-center gap-4">
-          <span className="font-display text-sm text-violet">04</span>
+          <span className="font-display text-sm text-violet">{t.contact.number}</span>
           <span className="h-px w-8 bg-gradient-to-r from-violet to-transparent" />
           <h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-            <RevealWords text="Contact" />
+            <RevealWords text={t.contact.title} />
           </h2>
         </div>
 
         <FadeUp>
           <p className="max-w-xl text-base text-muted sm:text-lg">
-            Partons ensemble à la conquête d&apos;interfaces engageantes et
-            centrées utilisateur. Un projet, une idée, une opportunité ? Je
-            suis toujours partante pour échanger.
+            {t.contact.intro}
           </p>
         </FadeUp>
 
@@ -75,7 +76,7 @@ export default function Contact() {
                 data-cursor-hover
                 className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-foreground transition-colors hover:border-violet"
               >
-                <Mail className="h-4 w-4" /> Email
+                <Mail className="h-4 w-4" /> {t.contact.email}
               </a>
             </Magnetic>
             <Magnetic>
@@ -97,7 +98,7 @@ export default function Contact() {
                 data-cursor-hover
                 className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-foreground transition-colors hover:border-violet"
               >
-                <LinkedinIcon className="h-4 w-4" /> LinkedIn
+                <LinkedinIcon className="h-4 w-4" /> {t.contact.linkedin}
               </a>
             </Magnetic>
             <Magnetic>
@@ -108,7 +109,7 @@ export default function Contact() {
                 data-cursor-hover
                 className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-foreground transition-colors hover:border-violet"
               >
-                <GithubIcon className="h-4 w-4" /> GitHub
+                <GithubIcon className="h-4 w-4" /> {t.contact.github}
               </a>
             </Magnetic>
           </div>

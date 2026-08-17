@@ -15,41 +15,38 @@ import {
 } from "lucide-react";
 import { RevealWords } from "./motion/Reveal";
 import Magnetic from "./motion/Magnetic";
-
-const stats = [
-  { value: "6+", label: "Ans d'expérience" },
-  { value: "21", label: "Projets menés" },
-  { value: "3", label: "Secteurs — Fintech, E-commerce, Voyage" },
-];
-
-const badges = [
-  {
-    icon: Search,
-    label: "User Research",
-    className: "left-[-2%] top-[18%] sm:left-[-8%]",
-    duration: 5.5,
-  },
-  {
-    icon: Layers,
-    label: "Design System",
-    className: "right-[-4%] top-[8%] sm:right-[-10%]",
-    duration: 6.5,
-  },
-  {
-    icon: PenTool,
-    label: "Prototypage",
-    className: "left-[-6%] bottom-[26%] sm:left-[-12%]",
-    duration: 6,
-  },
-  {
-    icon: Bot,
-    label: "AI Tools",
-    className: "right-[-2%] bottom-[14%] sm:right-[-8%]",
-    duration: 5,
-  },
-];
+import { useT } from "@/lib/LanguageContext";
 
 export default function Hero() {
+  const t = useT();
+
+  const badges = [
+    {
+      icon: Search,
+      label: t.hero.badges.research,
+      className: "left-[-2%] top-[18%] sm:left-[-8%]",
+      duration: 5.5,
+    },
+    {
+      icon: Layers,
+      label: t.hero.badges.design,
+      className: "right-[-4%] top-[8%] sm:right-[-10%]",
+      duration: 6.5,
+    },
+    {
+      icon: PenTool,
+      label: t.hero.badges.prototyping,
+      className: "left-[-6%] bottom-[26%] sm:left-[-12%]",
+      duration: 6,
+    },
+    {
+      icon: Bot,
+      label: t.hero.badges.ai,
+      className: "right-[-2%] bottom-[14%] sm:right-[-8%]",
+      duration: 5,
+    },
+  ];
+
   return (
     <section
       id="top"
@@ -99,11 +96,11 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-white/60"
           >
-            My Portfolio
+            {t.hero.eyebrow}
           </motion.p>
 
           <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            <RevealWords text="Hello, je suis" className="block text-white/70" />
+            <RevealWords text={t.hero.greeting} className="block text-white/70" />
             <RevealWords text="Wided Rouatbi" className="block text-gradient" />
           </h1>
 
@@ -115,7 +112,7 @@ export default function Hero() {
           >
             <Palette className="h-4 w-4 text-violet" />
             <span className="text-sm font-semibold text-white">
-              UX/UI Designer
+              {t.hero.role}
             </span>
           </motion.div>
 
@@ -125,10 +122,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
           >
-            Product Designer &amp; AI-Augmented Designer, je transforme des
-            besoins métier complexes en interfaces claires — en intégrant
-            l&apos;intelligence artificielle à chaque étape de mon process
-            créatif, de la recherche au prototypage.
+            {t.hero.bio}
           </motion.p>
 
           <motion.div
@@ -143,7 +137,7 @@ export default function Hero() {
                 data-cursor-hover
                 className="group inline-flex items-center gap-2 rounded-full bg-yellow px-6 py-3 text-sm font-semibold text-purple-deep transition-transform"
               >
-                Voir mes projets
+                {t.hero.ctaProjects}
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </Magnetic>
@@ -153,7 +147,7 @@ export default function Hero() {
                 data-cursor-hover
                 className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-yellow hover:text-yellow"
               >
-                Me contacter
+                {t.hero.ctaContact}
               </a>
             </Magnetic>
           </motion.div>
@@ -164,7 +158,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.9 }}
             className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8"
           >
-            {stats.map((s) => (
+            {t.hero.stats.map((s) => (
               <div key={s.label}>
                 <p className="font-display text-2xl font-bold text-yellow sm:text-3xl">
                   {s.value}
@@ -246,7 +240,7 @@ export default function Hero() {
           style={{ writingMode: "vertical-rl" }}
           className="rotate-180 text-xs font-light tracking-wide text-white/80 transition-colors group-hover:text-yellow"
         >
-          Let&apos;s Get started
+          {t.hero.scrollCue}
         </span>
         <span className="h-6 w-px bg-yellow/70" />
         <motion.span

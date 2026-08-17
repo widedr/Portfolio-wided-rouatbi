@@ -2,17 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
-const sections = [
-  { id: "top", label: "Accueil" },
-  { id: "about", label: "À propos" },
-  { id: "work", label: "Projets" },
-  { id: "experience", label: "Parcours" },
-  { id: "contact", label: "Contact" },
-];
+import { useT } from "@/lib/LanguageContext";
 
 export default function SectionDots() {
   const [active, setActive] = useState("top");
+  const t = useT();
+  const sections = [
+    { id: "top", label: t.sectionDots.top },
+    { id: "about", label: t.sectionDots.about },
+    { id: "work", label: t.sectionDots.work },
+    { id: "experience", label: t.sectionDots.experience },
+    { id: "contact", label: t.sectionDots.contact },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
