@@ -41,7 +41,7 @@ const tags = [
 
 export default function Projects() {
   return (
-    <section id="work" className="relative px-6 py-28 sm:px-10 sm:py-36">
+    <section id="work" className="relative px-6 py-20 sm:px-10 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 flex items-center gap-4">
           <span className="font-display text-sm text-violet">03</span>

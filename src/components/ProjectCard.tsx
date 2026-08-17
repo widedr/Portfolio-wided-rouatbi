@@ -50,16 +50,18 @@ export default function ProjectCard({ project }: { project: Project }) {
               {project.title.slice(0, 2).toUpperCase()}
             </span>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
           <span
             className={`absolute right-3 top-3 rounded-full border border-border/60 bg-background/70 px-2.5 py-0.5 text-[10px] uppercase tracking-wide backdrop-blur-sm ${style.text}`}
           >
             {project.category}
           </span>
+          <h4 className="absolute bottom-3 left-4 right-4 font-display text-lg font-semibold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+            {project.title}
+          </h4>
         </div>
         <div className="p-5">
-          <h4 className="font-display text-base text-foreground">{project.title}</h4>
-          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
+          <p className="line-clamp-2 text-sm leading-relaxed text-muted">
             {project.description}
           </p>
           <p className="mt-3 text-xs text-muted/70">

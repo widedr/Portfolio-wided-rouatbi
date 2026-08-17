@@ -1,8 +1,21 @@
 "use client";
 
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight, Mail, Phone } from "lucide-react";
 import { RevealWords, FadeUp } from "./motion/Reveal";
 import Magnetic from "./motion/Magnetic";
+
+function LinkedinIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden
+    >
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z" />
+    </svg>
+  );
+}
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -19,7 +32,7 @@ function GithubIcon({ className }: { className?: string }) {
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative px-6 py-28 sm:px-10 sm:py-36">
+    <section id="contact" className="relative px-6 py-20 sm:px-10 sm:py-24">
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
         <div className="h-[26rem] w-[26rem] rounded-full bg-violet/10 blur-[130px]" />
       </div>
@@ -63,6 +76,26 @@ export default function Contact() {
                 className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-foreground transition-colors hover:border-violet"
               >
                 <Mail className="h-4 w-4" /> Email
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="tel:+21654367147"
+                data-cursor-hover
+                className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-foreground transition-colors hover:border-violet"
+              >
+                <Phone className="h-4 w-4" /> +216 54 367 147
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="https://www.linkedin.com/in/wided-rouatbi-25501a15a/"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor-hover
+                className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-foreground transition-colors hover:border-violet"
+              >
+                <LinkedinIcon className="h-4 w-4" /> LinkedIn
               </a>
             </Magnetic>
             <Magnetic>

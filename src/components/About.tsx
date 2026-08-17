@@ -66,7 +66,7 @@ const marqueeItems = [
 
 export default function About() {
   return (
-    <section id="about" className="relative px-6 py-28 sm:px-10 sm:py-36">
+    <section id="about" className="relative px-6 py-20 sm:px-10 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 flex items-center gap-4">
           <span className="font-display text-sm text-violet">01</span>

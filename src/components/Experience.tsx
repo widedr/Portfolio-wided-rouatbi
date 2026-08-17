@@ -70,7 +70,7 @@ export default function Experience() {
   const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="experience" className="relative px-6 py-28 sm:px-10 sm:py-36">
+    <section id="experience" className="relative px-6 py-20 sm:px-10 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 flex items-center gap-4">
           <span className="font-display text-sm text-violet">02</span>
@@ -81,10 +81,10 @@ export default function Experience() {
         </div>
 
         <div ref={ref} className="relative pl-10 sm:pl-14">
-          <div className="absolute left-0 top-1 h-full w-px bg-border sm:left-1" />
+          <div className="absolute left-2 top-1 h-full w-px bg-border" />
           <motion.div
             style={{ height }}
-            className="absolute left-0 top-1 w-px bg-gradient-to-b from-violet to-yellow sm:left-1"
+            className="absolute left-2 top-1 w-px bg-gradient-to-b from-violet to-yellow"
           />
 
           {experiences.map((exp) => (

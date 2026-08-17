@@ -52,7 +52,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-background px-6 pb-24 pt-28 sm:px-10 lg:px-16"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-background px-6 pb-8 pt-28 sm:px-10 sm:pb-10 lg:px-16"
     >
       {/* Soft mesh-gradient wash — muted echo of the pastel blob in the
           Figma "About me" cover, tuned down for dark mode instead of one
@@ -110,7 +110,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-5 inline-flex items-center gap-2 rounded-md bg-pink px-4 py-2 shadow-lg shadow-pink/20"
+            className="mt-5 inline-flex items-center gap-2 rounded-md bg-violet px-4 py-2 shadow-lg shadow-violet/30"
           >
             <span className="text-sm font-semibold text-white">
               UX/UI Designer
@@ -180,7 +180,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.92, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto aspect-[4/5] w-full max-w-sm lg:max-w-none"
+          className="relative mx-auto aspect-[4/5] w-full max-w-sm self-end lg:max-w-none"
         >
           <div className="absolute inset-x-6 inset-y-10 rounded-full bg-gradient-to-br from-violet/40 via-pink/20 to-yellow/30 blur-3xl" />
           <div className="relative h-full w-full">
@@ -232,31 +232,29 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl items-end justify-end">
-        <motion.a
-          href="#about"
-          data-cursor-hover
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-          className="group flex flex-col items-center gap-3"
+      <motion.a
+        href="#about"
+        data-cursor-hover
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1.2 }}
+        className="group absolute bottom-6 right-6 z-20 flex flex-col items-center gap-2 sm:right-10 lg:right-16"
+      >
+        <span
+          style={{ writingMode: "vertical-rl" }}
+          className="rotate-180 text-xs font-light tracking-wide text-white/80 transition-colors group-hover:text-yellow"
         >
-          <span
-            style={{ writingMode: "vertical-rl" }}
-            className="rotate-180 text-xs font-light tracking-wide text-white/70 transition-colors group-hover:text-yellow"
-          >
-            Let&apos;s Get started
-          </span>
-          <span className="h-10 w-px bg-yellow/70" />
-          <motion.span
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            className="text-yellow"
-          >
-            <ArrowDown className="h-4 w-4" />
-          </motion.span>
-        </motion.a>
-      </div>
+          Let&apos;s Get started
+        </span>
+        <span className="h-6 w-px bg-yellow/70" />
+        <motion.span
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          className="text-yellow"
+        >
+          <ArrowDown className="h-4 w-4" />
+        </motion.span>
+      </motion.a>
     </section>
   );
 }
