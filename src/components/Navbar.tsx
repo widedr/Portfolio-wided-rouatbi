@@ -2,17 +2,20 @@
 
 import { motion, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Magnetic from "./motion/Magnetic";
 
 const links = [
   { href: "#about", label: "À propos" },
-  { href: "#work", label: "Projets" },
+  { href: "/projects", label: "Projets" },
   { href: "#experience", label: "Parcours" },
   { href: "#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const { scrollYProgress } = useScroll();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -22,6 +25,9 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const resolveHref = (href: string) =>
+    href.startsWith("#") && !isHome ? `/${href}` : href;
 
   return (
     <>
@@ -36,7 +42,7 @@ export default function Navbar() {
       >
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 sm:px-10">
           <a
-            href="#top"
+            href={resolveHref("#top")}
             data-cursor-hover
             className="font-display text-sm font-medium tracking-tight text-foreground"
           >
@@ -47,7 +53,7 @@ export default function Navbar() {
             {links.map((l) => (
               <a
                 key={l.href}
-                href={l.href}
+                href={resolveHref(l.href)}
                 data-cursor-hover
                 className="group relative text-sm text-muted transition-colors hover:text-foreground"
               >
@@ -97,7 +103,7 @@ export default function Navbar() {
             {links.map((l) => (
               <a
                 key={l.href}
-                href={l.href}
+                href={resolveHref(l.href)}
                 onClick={() => setOpen(false)}
                 className="py-2 text-lg text-muted hover:text-foreground"
               >

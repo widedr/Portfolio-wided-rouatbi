@@ -28,20 +28,27 @@ const expertise = [
   },
   {
     icon: Wrench,
-    title: "Outils",
-    items: ["Figma", "Adobe XD", "Sketch", "Adobe Creative Cloud", "Miro", "Whimsical"],
+    title: "Outils & méthodes",
+    items: [
+      "Figma",
+      "Adobe XD",
+      "Illustrator",
+      "Photoshop",
+      "FigJam",
+      "Notion",
+      "Design Thinking",
+      "Agile/Scrum",
+    ],
   },
   {
     icon: Sparkles,
     title: "Soft skills",
     items: [
-      "Collaboration",
+      "Esprit d'équipe",
+      "Créativité & curiosité",
+      "Organisation & rigueur",
       "Communication",
-      "Curiosité & apprentissage continu",
-      "Diversité de projets",
-      "Multitâche",
-      "Créativité",
-      "Leadership",
+      "Flexibilité & adaptabilité",
     ],
   },
 ];
@@ -98,6 +105,17 @@ export default function About() {
                   {sector}
                 </span>
               ))}
+            </div>
+
+            <div className="mt-10 grid grid-cols-2 gap-6 border-t border-border pt-6">
+              <div>
+                <p className="text-xs uppercase tracking-wide text-muted/70">Formation</p>
+                <p className="mt-1 text-sm text-foreground">Master en Design Visuel</p>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-wide text-muted/70">Langues</p>
+                <p className="mt-1 text-sm text-foreground">Arabe · Français · Anglais</p>
+              </div>
             </div>
           </FadeUp>
 

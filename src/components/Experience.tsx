@@ -14,6 +14,51 @@ const experiences = [
       "Conception de l'expérience produit pour des solutions SaaS B2B destinées aux acteurs de l'immobilier et de la fiscalité. De la recherche utilisateur à l'architecture de l'information, du design system au prototypage haute-fidélité — en collaboration étroite avec les équipes produit et tech. Intégration d'outils IA pour accélérer l'idéation et fluidifier le passage du design au code.",
     tags: ["SaaS B2B", "Design System", "Fiscalité immobilière", "AI Tooling"],
   },
+  {
+    company: "Satoripop",
+    role: "UX/UI Designer",
+    period: "Février 2022 — Mars 2026",
+    current: false,
+    description:
+      "Conception de design systems cohérents pour des clients des secteurs banque, e-commerce et voyage (Carrefour.tn, Attunea, Travel Shaper, Convergence, Bridge Global Funding...). Wireframes et prototypes interactifs en temps réel avec les développeurs, interviews utilisateurs et tests de prototypes. Accompagnement de stagiaires et mentorat de designers juniors sur des projets réels.",
+    tags: ["Figma", "Adobe XD", "Design System", "Mentorat"],
+  },
+  {
+    company: "Institut Supérieur des Beaux-Arts de Sousse",
+    role: "Expert professor",
+    period: "Septembre 2024 — Juillet 2025",
+    current: false,
+    description:
+      "Enseignement et accompagnement d'étudiants en UX/UI, design thinking et fondamentaux du design produit digital.",
+    tags: ["Enseignement", "Design Thinking", "UX/UI"],
+  },
+  {
+    company: "Gomy Code",
+    role: "UX/UI Instructor",
+    period: "Octobre 2021 — Juin 2022",
+    current: false,
+    description:
+      "Formation de plus de 20 étudiants en design UX/UI : théorie, méthodologie et bonnes pratiques. Accompagnement pédagogique et amélioration continue des supports de cours.",
+    tags: ["Formation", "Pédagogie", "UX/UI"],
+  },
+  {
+    company: "Diginov / Design code",
+    role: "UX/UI Designer",
+    period: "Octobre 2021 — Janvier 2022",
+    current: false,
+    description:
+      "Co-conception d'applications mobiles et web avec une forte orientation UX (Comptat RH, Comptat Crédit Débit). Analyse des besoins clients, proposition de parcours utilisateurs optimisés et collaboration étroite avec les équipes techniques.",
+    tags: ["Adobe XD", "Illustrator", "Mobile & Web"],
+  },
+  {
+    company: "WeAre Moon",
+    role: "UX/UI Designer",
+    period: "Août 2020 — Septembre 2021",
+    current: false,
+    description:
+      "Première immersion professionnelle dans le UX/UI. Conception de concepts graphiques sous la supervision d'une designer senior et production d'assets visuels pour plusieurs projets clients (Split, Rizouya, Demco, AVS, Kindeal).",
+    tags: ["Adobe XD", "Illustrator", "Photoshop"],
+  },
 ];
 
 export default function Experience() {

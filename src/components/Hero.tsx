@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { RevealWords } from "./motion/Reveal";
@@ -120,14 +121,14 @@ export default function Hero() {
           className="mt-8 flex flex-wrap items-center gap-4"
         >
           <Magnetic>
-            <a
-              href="#work"
+            <Link
+              href="/projects"
               data-cursor-hover
               className="group inline-flex items-center gap-2 rounded-full bg-yellow px-6 py-3 text-sm font-semibold text-purple-deep transition-transform"
             >
               Voir mes projets
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            </Link>
           </Magnetic>
           <Magnetic>
             <a

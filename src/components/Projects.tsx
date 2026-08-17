@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, Building2, Calculator, LineChart, FileCheck2 } from "lucide-react";
 import { RevealWords, FadeUp } from "./motion/Reveal";
 import TiltCard from "./TiltCard";
 import ProjectsGrid from "./ProjectsGrid";
+import Magnetic from "./motion/Magnetic";
 
 const highlights = [
   {
@@ -135,7 +137,28 @@ export default function Projects() {
           </TiltCard>
         </FadeUp>
 
-        <ProjectsGrid />
+        <div className="mt-16">
+          <FadeUp>
+            <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+              <h3 className="font-display text-xl text-foreground">
+                Autres projets
+                <span className="ml-2 text-sm font-normal text-muted">(20)</span>
+              </h3>
+              <Magnetic>
+                <Link
+                  href="/projects"
+                  data-cursor-hover
+                  className="group inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm text-foreground transition-colors hover:border-violet"
+                >
+                  Voir tous les projets
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              </Magnetic>
+            </div>
+          </FadeUp>
+
+          <ProjectsGrid showFilters={false} limit={6} />
+        </div>
       </div>
     </section>
   );
