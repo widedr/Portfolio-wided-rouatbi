@@ -3,14 +3,49 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Sparkles,
+  Search,
+  Layers,
+  PenTool,
+  Bot,
+} from "lucide-react";
 import { RevealWords } from "./motion/Reveal";
 import Magnetic from "./motion/Magnetic";
 
 const stats = [
   { value: "6+", label: "Ans d'expérience" },
+  { value: "21", label: "Projets menés" },
   { value: "3", label: "Secteurs — Fintech, E-commerce, Voyage" },
-  { value: "Neoshore", label: "Poste actuel, depuis mars 2026" },
+];
+
+const badges = [
+  {
+    icon: Search,
+    label: "User Research",
+    className: "left-[-2%] top-[18%] sm:left-[-8%]",
+    duration: 5.5,
+  },
+  {
+    icon: Layers,
+    label: "Design System",
+    className: "right-[-4%] top-[8%] sm:right-[-10%]",
+    duration: 6.5,
+  },
+  {
+    icon: PenTool,
+    label: "Prototypage",
+    className: "left-[-6%] bottom-[26%] sm:left-[-12%]",
+    duration: 6,
+  },
+  {
+    icon: Bot,
+    label: "AI Tools",
+    className: "right-[-2%] bottom-[14%] sm:right-[-8%]",
+    duration: 5,
+  },
 ];
 
 export default function Hero() {
@@ -54,126 +89,151 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center">
-        <div className="grid items-center gap-10 sm:grid-cols-[auto_1px_1fr] sm:gap-8">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative h-32 w-32 shrink-0 sm:h-40 sm:w-40"
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+        {/* Left — copy */}
+        <div>
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-white/60"
           >
-            <div className="absolute -inset-2 rounded-full bg-yellow/20 blur-md" />
-            <div className="relative h-full w-full overflow-hidden rounded-full border border-white/10 bg-surface">
-              <Image
-                src="/images/profile.jpg"
-                alt="Portrait de Wided Rouatbi"
-                fill
-                priority
-                sizes="160px"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 rounded-full bg-yellow/10" />
-            </div>
+            My Portfolio
+          </motion.p>
+
+          <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <RevealWords text="Hello, je suis" className="block text-white/70" />
+            <RevealWords text="Wided Rouatbi" className="block text-gradient" />
+          </h1>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-5 inline-flex items-center gap-2 rounded-md bg-pink px-4 py-2 shadow-lg shadow-pink/20"
+          >
+            <span className="text-sm font-semibold text-white">
+              UX/UI Designer
+            </span>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+            className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
+          >
+            Product Designer &amp; AI-Augmented Designer, je transforme des
+            besoins métier complexes en interfaces claires — en intégrant
+            l&apos;intelligence artificielle à chaque étape de mon process
+            créatif, de la recherche au prototypage.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.75 }}
+            className="mt-8 flex flex-wrap items-center gap-4"
+          >
+            <Magnetic>
+              <Link
+                href="/projects"
+                data-cursor-hover
+                className="group inline-flex items-center gap-2 rounded-full bg-yellow px-6 py-3 text-sm font-semibold text-purple-deep transition-transform"
+              >
+                Voir mes projets
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="mailto:widedrouatbi@gmail.com"
+                data-cursor-hover
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-yellow hover:text-yellow"
+              >
+                Me contacter
+              </a>
+            </Magnetic>
           </motion.div>
 
           <motion.div
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden h-40 w-[3px] origin-top rounded-full bg-white/80 sm:block"
-          />
-
-          <div>
-            <motion.p
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="mb-2 text-sm font-medium uppercase tracking-[0.25em] text-white/80"
-            >
-              My Portfolio
-            </motion.p>
-            <h1 className="font-display text-3xl font-bold leading-none tracking-tight text-white sm:text-5xl lg:text-6xl">
-              <RevealWords text="Wided Rouatbi" className="block" />
-            </h1>
-            <h2 className="mt-3 font-display text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-              <RevealWords text="UX/UI" className="block text-yellow" />
-              <RevealWords text="Designer" className="block text-white" />
-            </h2>
-          </div>
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.9 }}
+            className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8"
+          >
+            {stats.map((s) => (
+              <div key={s.label}>
+                <p className="font-display text-2xl font-bold text-yellow sm:text-3xl">
+                  {s.value}
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-white/50">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </motion.div>
         </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="mt-10 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg"
-        >
-          Product Designer &amp; AI-Augmented Designer, je transforme des
-          besoins métier complexes en interfaces claires — en intégrant
-          l&apos;intelligence artificielle à chaque étape de mon process
-          créatif, de la recherche au prototypage.
-        </motion.p>
-
+        {/* Right — portrait with floating micro-interaction badges */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.75 }}
-          className="mt-8 flex flex-wrap items-center gap-4"
+          initial={{ opacity: 0, scale: 0.92, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mx-auto aspect-[4/5] w-full max-w-sm lg:max-w-none"
         >
-          <Magnetic>
-            <Link
-              href="/projects"
-              data-cursor-hover
-              className="group inline-flex items-center gap-2 rounded-full bg-yellow px-6 py-3 text-sm font-semibold text-purple-deep transition-transform"
-            >
-              Voir mes projets
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </Magnetic>
-          <Magnetic>
-            <a
-              href="mailto:widedrouatbi@gmail.com"
-              data-cursor-hover
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-yellow hover:text-yellow"
-            >
-              Me contacter
-            </a>
-          </Magnetic>
-        </motion.div>
+          <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-violet/30 via-pink/15 to-yellow/20 blur-3xl" />
+          <div className="relative h-full w-full overflow-hidden rounded-[2rem] border border-white/10 bg-surface shadow-2xl">
+            <Image
+              src="/images/profile.jpg"
+              alt="Portrait de Wided Rouatbi"
+              fill
+              priority
+              sizes="(max-width: 1024px) 380px, 480px"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+          </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.9 }}
-          className="mt-12 grid max-w-2xl grid-cols-1 gap-6 border-t border-white/10 pt-8 sm:grid-cols-3"
-        >
-          {stats.map((s) => (
-            <div key={s.label}>
-              <p className="font-display text-3xl font-bold text-yellow sm:text-4xl">
-                {s.value}
-              </p>
-              <p className="mt-1 text-xs leading-relaxed text-white/50">
-                {s.label}
-              </p>
-            </div>
+          {badges.map((b) => (
+            <motion.div
+              key={b.label}
+              data-cursor-hover
+              className={`absolute z-10 hidden items-center gap-2 rounded-2xl border border-white/10 bg-surface/90 px-4 py-2.5 shadow-xl backdrop-blur-md sm:flex ${b.className}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: [0, -10, 0] }}
+              transition={{
+                opacity: { duration: 0.6, delay: 1 },
+                y: {
+                  duration: b.duration,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1,
+                },
+              }}
+              whileHover={{ scale: 1.08 }}
+            >
+              <b.icon className="h-4 w-4 text-violet" />
+              <span className="whitespace-nowrap text-xs font-medium text-foreground">
+                {b.label}
+              </span>
+            </motion.div>
           ))}
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 1.3, type: "spring" }}
+            whileHover={{ rotate: 12, scale: 1.1 }}
+            data-cursor-hover
+            className="absolute -right-3 -top-3 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-yellow shadow-lg shadow-yellow/30 sm:-right-5 sm:-top-5"
+          >
+            <Sparkles className="h-6 w-6 text-purple-deep" />
+          </motion.div>
         </motion.div>
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl items-end justify-between">
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.1 }}
-          className="flex items-center gap-2 text-xs text-white/50"
-        >
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow opacity-75" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-yellow" />
-          </span>
-          Disponible — actuellement chez Neoshore
-        </motion.div>
-
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl items-end justify-end">
         <motion.a
           href="#about"
           data-cursor-hover
