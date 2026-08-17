@@ -38,7 +38,7 @@ export default function Experience() {
           <div className="absolute left-0 top-1 h-full w-px bg-border sm:left-1" />
           <motion.div
             style={{ height }}
-            className="absolute left-0 top-1 w-px bg-gradient-to-b from-violet via-[#c17bff] to-orange sm:left-1"
+            className="absolute left-0 top-1 w-px bg-gradient-to-b from-violet to-yellow sm:left-1"
           />
 
           {experiences.map((exp) => (
@@ -48,7 +48,7 @@ export default function Experience() {
                   {exp.current && (
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet opacity-60" />
                   )}
-                  <span className="relative inline-flex h-3 w-3 rounded-full bg-gradient-to-br from-violet to-orange" />
+                  <span className="relative inline-flex h-3 w-3 rounded-full bg-gradient-to-br from-violet to-yellow" />
                 </span>
               </span>
 

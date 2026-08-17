@@ -26,7 +26,7 @@ export default function Navbar() {
   return (
     <>
       <motion.div
-        className="fixed left-0 top-0 z-50 h-[2px] w-full origin-left bg-gradient-to-r from-violet via-[#c17bff] to-orange"
+        className="fixed left-0 top-0 z-50 h-[2px] w-full origin-left bg-gradient-to-r from-violet to-yellow"
         style={{ scaleX: scrollYProgress }}
       />
       <header
@@ -52,7 +52,7 @@ export default function Navbar() {
                 className="group relative text-sm text-muted transition-colors hover:text-foreground"
               >
                 {l.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-gradient-to-r from-violet to-orange transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 h-px w-0 bg-gradient-to-r from-violet to-yellow transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
             <Magnetic>
