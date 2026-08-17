@@ -7,7 +7,7 @@ import { RevealWords } from "./motion/Reveal";
 import Magnetic from "./motion/Magnetic";
 
 const stats = [
-  { value: "4+", label: "Ans d'expérience" },
+  { value: "6+", label: "Ans d'expérience" },
   { value: "3", label: "Secteurs — Fintech, E-commerce, Voyage" },
   { value: "Neoshore", label: "Poste actuel, depuis mars 2026" },
 ];
@@ -16,24 +16,40 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-purple-deep px-6 pb-24 pt-28 sm:px-10 lg:px-16"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-background px-6 pb-24 pt-28 sm:px-10 lg:px-16"
     >
-      {/* Ambient gradient orbs — echoes the Figma cover's blurred corner blobs */}
+      {/* Soft mesh-gradient wash — muted echo of the pastel blob in the
+          Figma "About me" cover, tuned down for dark mode instead of one
+          flat saturated purple panel. */}
       <div className="pointer-events-none absolute inset-0 -z-0">
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
         <motion.div
           animate={{ x: [0, 30, 0], y: [0, 20, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -right-32 -top-56 h-[34rem] w-[34rem] rounded-full bg-violet/50 blur-[130px]"
+          className="absolute -right-32 -top-56 h-[34rem] w-[34rem] rounded-full bg-violet/20 blur-[140px]"
         />
         <motion.div
           animate={{ x: [0, -20, 0], y: [0, 25, 0] }}
           transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-40 -left-24 h-[30rem] w-[30rem] rounded-full bg-violet/40 blur-[130px]"
+          className="absolute -bottom-40 -left-24 h-[30rem] w-[30rem] rounded-full bg-purple-deep/25 blur-[140px]"
         />
         <motion.div
-          animate={{ opacity: [0.5, 0.9, 0.5] }}
+          animate={{ x: [0, -15, 0], y: [0, 15, 0] }}
+          transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute right-1/4 top-1/3 h-[22rem] w-[22rem] rounded-full bg-pink/10 blur-[130px]"
+        />
+        <motion.div
+          animate={{ opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-yellow/20 blur-[100px]"
+          className="absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-yellow/10 blur-[100px]"
         />
       </div>
 

@@ -10,6 +10,7 @@
   --violet: #8f5bff;
   --purple-deep: #4103a6;
   --yellow: #fee449;
+  --pink: #ff5fa8;
   --gradient: linear-gradient(120deg, #4103a6 0%, #8f5bff 55%, #fee449 100%);
 }
 
@@ -23,6 +24,7 @@
   --color-violet: var(--violet);
   --color-purple-deep: var(--purple-deep);
   --color-yellow: var(--yellow);
+  --color-pink: var(--pink);
   --font-display: var(--font-space-grotesk);
   --font-sans: var(--font-inter);
 }

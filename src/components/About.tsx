@@ -82,7 +82,7 @@ export default function About() {
             <p className="mt-6 max-w-md text-base leading-relaxed text-muted">
               Designer UX/UI, j&apos;aime concevoir des solutions digitales
               qui allient sens du détail et approche centrée utilisateur.
-              Avec plus de 4 ans d&apos;expérience dans les secteurs de la
+              Avec plus de 6 ans d&apos;expérience dans les secteurs de la
               fintech, de l&apos;e-commerce et du voyage, j&apos;ai appris à
               traduire des besoins métier complexes en interfaces claires —
               et j&apos;intègre aujourd&apos;hui l&apos;intelligence
