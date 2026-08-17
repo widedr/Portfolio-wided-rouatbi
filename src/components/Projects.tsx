@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowUpRight, Building2, Calculator, LineChart, FileCheck2 } from "lucide-react";
 import { RevealWords, FadeUp } from "./motion/Reveal";
 import TiltCard from "./TiltCard";
+import ProjectsGrid from "./ProjectsGrid";
 
 const highlights = [
   {
@@ -44,9 +45,13 @@ export default function Projects() {
           <span className="font-display text-sm text-violet">03</span>
           <span className="h-px w-8 bg-gradient-to-r from-violet to-transparent" />
           <h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-            <RevealWords text="Projet phare" />
+            <RevealWords text="Projets" />
           </h2>
         </div>
+
+        <p className="mb-8 text-xs uppercase tracking-[0.2em] text-muted/70">
+          Projet actuel
+        </p>
 
         <FadeUp>
           <TiltCard className="group relative overflow-hidden rounded-3xl border border-border bg-surface/50">
@@ -129,6 +134,8 @@ export default function Projects() {
             </div>
           </TiltCard>
         </FadeUp>
+
+        <ProjectsGrid />
       </div>
     </section>
   );
