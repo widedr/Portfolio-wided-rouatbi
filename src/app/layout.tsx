@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
+import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import PageTransition from "@/components/PageTransition";
 import { LanguageProvider } from "@/lib/LanguageContext";
 
 const spaceGrotesk = Space_Grotesk({
@@ -59,10 +61,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col bg-background text-foreground cursor-none-fine">
         <LanguageProvider>
-          <SmoothScroll />
-          <CustomCursor />
-          <div aria-hidden className="grain" />
-          {children}
+          <MotionConfig reducedMotion="user">
+            <SmoothScroll />
+            <CustomCursor />
+            <div aria-hidden className="grain" />
+            <PageTransition>{children}</PageTransition>
+          </MotionConfig>
         </LanguageProvider>
       </body>
     </html>

@@ -27,10 +27,11 @@ export default function ProjectsGrid({
       {showFilters && (
         <div className="mb-8 flex flex-wrap gap-2">
           {filters.map((f) => (
-            <button
+            <motion.button
               key={f}
               onClick={() => setActive(f)}
               data-cursor-hover
+              whileTap={{ scale: 0.95, transition: { duration: 0.12, ease: "easeOut" } }}
               className={`rounded-full border px-4 py-1.5 text-xs transition-colors ${
                 active === f
                   ? "border-violet bg-violet/15 text-foreground"
@@ -38,15 +39,15 @@ export default function ProjectsGrid({
               }`}
             >
               {f === "all" ? t.projects.filterAll : categoryLabels[f][lang]}
-            </button>
+            </motion.button>
           ))}
         </div>
       )}
 
       <motion.div layout className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
-          {visible.map((p) => (
-            <ProjectCard key={p.slug} project={p} />
+          {visible.map((p, i) => (
+            <ProjectCard key={p.slug} project={p} index={i} />
           ))}
         </AnimatePresence>
       </motion.div>

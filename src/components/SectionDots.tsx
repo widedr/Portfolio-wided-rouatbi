@@ -10,8 +10,8 @@ export default function SectionDots() {
   const sections = [
     { id: "top", label: t.sectionDots.top },
     { id: "about", label: t.sectionDots.about },
-    { id: "work", label: t.sectionDots.work },
     { id: "experience", label: t.sectionDots.experience },
+    { id: "work", label: t.sectionDots.work },
     { id: "contact", label: t.sectionDots.contact },
   ];
 

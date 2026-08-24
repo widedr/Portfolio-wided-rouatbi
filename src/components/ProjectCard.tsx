@@ -13,7 +13,13 @@ const categoryStyle: Record<ProjectCategory, { from: string; to: string; text: s
   saas: { from: "from-violet/25", to: "to-yellow/10", text: "text-violet" },
 };
 
-export default function ProjectCard({ project }: { project: Project }) {
+export default function ProjectCard({
+  project,
+  index = 0,
+}: {
+  project: Project;
+  index?: number;
+}) {
   const { lang } = useLanguage();
   const style = categoryStyle[project.category];
 
@@ -21,9 +27,17 @@ export default function ProjectCard({ project }: { project: Project }) {
     <motion.div
       layout
       initial={{ opacity: 0, scale: 0.94 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.94 }}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        transition: {
+          duration: 0.35,
+          ease: [0.16, 1, 0.3, 1],
+          delay: Math.min(index, 8) * 0.05,
+        },
+      }}
+      exit={{ opacity: 0, scale: 0.94, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } }}
+      whileTap={{ scale: 0.97, transition: { duration: 0.12, ease: "easeOut" } }}
     >
       <Link
         href={`/projects/${project.slug}`}

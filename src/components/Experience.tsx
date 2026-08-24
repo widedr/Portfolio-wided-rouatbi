@@ -141,7 +141,7 @@ export default function Experience() {
 
               <div
                 data-cursor-hover
-                className="rounded-2xl border border-border bg-surface/50 p-6 transition-colors duration-300 hover:border-violet/50 sm:p-8"
+                className="rounded-2xl border border-border bg-surface/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-violet/50 hover:bg-surface sm:p-8"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <h3 className="font-display text-xl text-foreground sm:text-2xl">

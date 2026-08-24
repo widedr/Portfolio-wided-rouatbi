@@ -39,6 +39,8 @@ export default function Magnetic({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ x: springX, y: springY }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ duration: 0.12, ease: "easeOut" }}
       className={className}
       data-cursor-hover
     >
