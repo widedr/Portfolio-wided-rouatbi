@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MathisBsCaseStudy from "@/components/MathisBsCaseStudy";
 import { type Project, type ProjectCategory, categoryLabels } from "@/lib/projects";
 import { useLanguage, useT } from "@/lib/LanguageContext";
 
@@ -92,13 +93,17 @@ export default function ProjectDetailContent({
             ))}
           </div>
 
-          <div className="mt-8 space-y-5">
-            {project.longDescription[lang].map((paragraph, i) => (
-              <p key={i} className="max-w-2xl text-base leading-relaxed text-muted">
-                {paragraph}
-              </p>
-            ))}
-          </div>
+          {project.slug === "mathis-bs" ? (
+            <MathisBsCaseStudy />
+          ) : (
+            <div className="mt-8 space-y-5">
+              {project.longDescription[lang].map((paragraph, i) => (
+                <p key={i} className="max-w-2xl text-base leading-relaxed text-muted">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          )}
 
           <Link
             href={`/projects/${next.slug}`}
