@@ -87,10 +87,9 @@ const content = {
         { name: "Simulateur de Projet", description: "Aide à la décision pour un événement patrimonial ponctuel (destruction, vente d'un bien)." },
       ],
       whyLabel: "Pourquoi cette séparation",
-      why: "Les logiques de calcul diffèrent fondamentalement entre les deux usages. Une projection continue du patrimoine existant n'obéit pas aux mêmes mécaniques qu'une simulation ponctuelle déclenchée par une décision. Un outil unique aurait mélangé deux modèles de calcul incompatibles dans une même interface.",
-      differentiatorsLabel:
-        "Axes de différenciation identifiés — deux fonctionnalités qui répondent à des besoins de décision que l'audit concurrentiel a mis en évidence",
-      differentiators: ["Simulation d'événements Destruction / Vente", "Comparaison croisée entre plusieurs simulations"],
+      why: "Identifier que ces deux usages reposaient sur des modèles mentaux différents — suivi continu d'un côté, décision ponctuelle de l'autre — m'a conduite à concevoir deux moteurs distincts plutôt qu'un outil générique unique.",
+      differentiatorsLabel: "Ce que cette architecture apporte — une lecture guidée par l'audit concurrentiel, pas un choix par défaut",
+      differentiators: ["Deux logiques de calcul strictement séparées", "Une aide à la décision pensée pour des profils non-techniques"],
     },
     iaFocus: {
       number: "05",
@@ -98,11 +97,11 @@ const content = {
       decisions: [
         {
           title: "Décision 1 — Simplification de la navigation",
-          body: "Retrait de « Parcelles » comme entrée de menu autonome. Les références de parcelles sont désormais intégrées directement dans la fiche Local plutôt que dans une page séparée.",
+          body: "J'ai réduit le nombre d'entrées de menu de premier niveau en regroupant des informations connexes au sein d'une même fiche plutôt que de les disperser sur plusieurs pages — un principe d'architecture de l'information appliqué pour réduire la charge cognitive des utilisateurs métier.",
         },
         {
           title: "Décision 2 — Alignement du vocabulaire produit (UX Writing)",
-          body: "Renommage du module « Réclamations » en « Optimisations fiscales ». Ce choix aligne le vocabulaire du produit sur celui que les utilisateurs métier emploient eux-mêmes, plutôt que sur une terminologie interne ou générique — le travail ne s'arrête pas à l'interface, il s'étend au langage du produit.",
+          body: "J'ai retravaillé le vocabulaire d'un module pour qu'il corresponde au langage que les utilisateurs métier emploient eux-mêmes, plutôt qu'à une terminologie interne ou générique — un travail de UX writing qui s'étend au-delà de l'interface jusqu'au langage du produit.",
         },
       ],
     },
@@ -111,16 +110,16 @@ const content = {
       title: "État actuel, limites et enseignements",
       blocks: [
         {
-          label: "Où en est le produit",
-          body: "Mathis BS est actuellement en phase de conception, avant son passage en développement. La spécification du module Simulation, l'audit concurrentiel priorisé, et les arbitrages d'architecture et de vocabulaire posent les fondations structurantes du produit.",
+          label: "Méthode de travail & outils IA",
+          body: "Mon approche combine un audit structuré, une collaboration étroite avec l'expertise métier, et l'intégration d'outils IA à différentes étapes du process — accélérer l'exploration de pistes de conception, structurer les enseignements de l'audit concurrentiel, et fluidifier le passage de la spécification fonctionnelle au design Figma. Une méthode que j'applique à l'ensemble de mes projets produit.",
         },
         {
           label: "Limites assumées",
-          body: "Le produit n'étant pas encore déployé, il n'y a pas de métrique d'impact mesurée à ce stade. La recherche utilisateur reste indirecte : le besoin me parvient via le Product Owner et l'expert métier fiscalité plutôt que par des entretiens que je mènerais moi-même.",
+          body: "Le produit étant encore en phase de conception, ce projet ne présente pas de métriques d'impact mesurées ni de retours utilisateurs directs à ce stade. Par souci de confidentialité vis-à-vis du client et du produit, certains éléments fonctionnels et le détail de l'audit concurrentiel ne sont volontairement pas partagés ici.",
         },
         {
           label: "Ce que ce projet démontre",
-          body: "La capacité à porter, seule, la conception d'un produit B2B dans un domaine réglementaire dense — depuis le positionnement stratégique et l'audit concurrentiel jusqu'aux arbitrages d'architecture de l'information et de vocabulaire produit.",
+          body: "La capacité à porter, seule, la conception d'un produit B2B dans un domaine réglementaire dense — depuis le positionnement stratégique et l'audit concurrentiel jusqu'aux arbitrages d'architecture de l'information, en intégrant les outils IA à chaque étape du process.",
         },
       ],
     },
@@ -207,10 +206,9 @@ const content = {
         { name: "Project Simulator", description: "Decision support for a one-off asset event (demolition, sale of a property)." },
       ],
       whyLabel: "Why the split",
-      why: "The calculation logic fundamentally differs between the two use cases. A continuous projection of the existing portfolio doesn't follow the same mechanics as a one-off simulation triggered by a decision. A single tool would have mixed two incompatible calculation models in the same interface.",
-      differentiatorsLabel:
-        "Differentiation angles identified — two features that answer decision-making needs the competitive audit brought to light",
-      differentiators: ["Demolition / sale event simulation", "Cross-comparison between multiple simulations"],
+      why: "Recognizing that these two use cases rested on different mental models — ongoing monitoring on one side, a one-off decision on the other — led me to design two distinct engines rather than a single generic tool.",
+      differentiatorsLabel: "What this architecture delivers — a reading guided by the competitive audit, not a default choice",
+      differentiators: ["Two strictly separated calculation logics", "Decision support designed for non-technical profiles"],
     },
     iaFocus: {
       number: "05",
@@ -218,11 +216,11 @@ const content = {
       decisions: [
         {
           title: "Decision 1 — Simplifying navigation",
-          body: "Removed \"Parcels\" as a standalone menu entry. Parcel references are now embedded directly in the unit record instead of living on a separate page.",
+          body: "I reduced the number of top-level menu entries by grouping related information within a single record instead of spreading it across separate pages — an information architecture principle applied to reduce cognitive load for business users.",
         },
         {
           title: "Decision 2 — Aligning product vocabulary (UX writing)",
-          body: "Renamed the \"Claims\" module to \"Tax Optimizations.\" This choice aligns the product's vocabulary with the language business users actually use themselves, rather than internal or generic terminology — the work doesn't stop at the interface, it extends to the product's language.",
+          body: "I reworked a module's vocabulary so it matches the language business users actually use themselves, rather than internal or generic terminology — UX writing work that extends beyond the interface, into the product's language.",
         },
       ],
     },
@@ -231,16 +229,16 @@ const content = {
       title: "Current state, limitations and takeaways",
       blocks: [
         {
-          label: "Where the product stands",
-          body: "Mathis BS is currently in the design phase, ahead of its move into development. The Simulation module's specification, the prioritized competitive audit, and the architecture and vocabulary trade-offs lay the product's structuring foundations.",
+          label: "Working method & AI tools",
+          body: "My approach combines a structured audit, close collaboration with domain expertise, and AI tooling woven into several stages of the process — speeding up exploration of design directions, structuring the competitive audit's findings, and streamlining the handoff from functional specification to Figma design. A method I apply across all of my product work.",
         },
         {
           label: "Limitations, acknowledged",
-          body: "Since the product isn't deployed yet, there's no measured impact metric at this stage. User research remains indirect: needs reach me through the Product Owner and the tax domain expert rather than through interviews I would conduct myself.",
+          body: "Since the product is still in the design phase, this project doesn't present measured impact metrics or direct user feedback at this stage. For confidentiality toward the client and the product, certain functional details and the full competitive audit are intentionally not shared here.",
         },
         {
           label: "What this project demonstrates",
-          body: "The ability to single-handedly drive the design of a B2B product in a dense regulatory domain — from strategic positioning and competitive audit through to information architecture and product vocabulary trade-offs.",
+          body: "The ability to single-handedly drive the design of a B2B product in a dense regulatory domain — from strategic positioning and competitive audit through to information architecture trade-offs, weaving AI tools into every step of the process.",
         },
       ],
     },
