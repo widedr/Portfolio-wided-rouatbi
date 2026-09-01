@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -14,6 +13,7 @@ import {
 } from "lucide-react";
 import { RevealWords } from "./motion/Reveal";
 import Magnetic from "./motion/Magnetic";
+import HeroPortrait from "./HeroPortrait";
 import { useT } from "@/lib/LanguageContext";
 
 export default function Hero() {
@@ -178,16 +178,7 @@ export default function Hero() {
           className="relative mx-auto aspect-[4/5] w-full max-w-sm self-end lg:max-w-none"
         >
           <div className="absolute inset-x-6 inset-y-10 rounded-full bg-gradient-to-br from-violet/40 via-pink/20 to-yellow/30 blur-3xl" />
-          <div className="relative h-full w-full">
-            <Image
-              src="/images/profile.png"
-              alt="Portrait de Wided Rouatbi"
-              fill
-              priority
-              sizes="(max-width: 1024px) 380px, 480px"
-              className="object-contain object-bottom drop-shadow-2xl"
-            />
-          </div>
+          <HeroPortrait src="/images/profile.png" alt="Portrait de Wided Rouatbi" />
 
           {badges.map((b) => (
             <motion.div
