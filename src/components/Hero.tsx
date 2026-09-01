@@ -178,7 +178,7 @@ export default function Hero() {
           className="relative mx-auto aspect-[4/5] w-full max-w-sm self-end lg:max-w-none"
         >
           <div className="absolute inset-x-6 inset-y-10 rounded-full bg-gradient-to-br from-violet/40 via-pink/20 to-yellow/30 blur-3xl" />
-          <HeroPortrait src="/images/profile.png" alt="Portrait de Wided Rouatbi" />
+          <HeroPortrait src="/images/profile-new.png" alt="Portrait de Wided Rouatbi" />
 
           {badges.map((b) => (
             <motion.div
