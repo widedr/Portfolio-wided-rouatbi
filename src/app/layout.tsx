@@ -5,6 +5,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import PageTransition from "@/components/PageTransition";
+import ChatWidget from "@/components/ChatWidget";
 import { LanguageProvider } from "@/lib/LanguageContext";
 
 const spaceGrotesk = Space_Grotesk({
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <CustomCursor />
             <div aria-hidden className="grain" />
             <PageTransition>{children}</PageTransition>
+            <ChatWidget />
           </MotionConfig>
         </LanguageProvider>
       </body>

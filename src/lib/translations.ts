@@ -161,6 +161,16 @@ export const translations = {
       copyright: (year: number) =>
         `© ${year} Wided Rouatbi. Conçu & animé avec soin.`,
     },
+    chat: {
+      label: "Assistant IA",
+      greeting:
+        "Bonjour ! Je suis l'assistant IA de Wided. Posez-moi une question sur son parcours, ses projets ou son expertise.",
+      placeholder: "Écrivez votre message...",
+      send: "Envoyer",
+      close: "Fermer",
+      thinking: "L'assistant réfléchit...",
+      error: "Une erreur est survenue. Réessayez ou contactez Wided directement.",
+    },
   },
   en: {
     nav: {
@@ -323,6 +333,16 @@ export const translations = {
     footer: {
       copyright: (year: number) =>
         `© ${year} Wided Rouatbi. Designed & animated with care.`,
+    },
+    chat: {
+      label: "AI Assistant",
+      greeting:
+        "Hi! I'm Wided's AI assistant. Ask me about her background, projects, or expertise.",
+      placeholder: "Type your message...",
+      send: "Send",
+      close: "Close",
+      thinking: "Thinking...",
+      error: "Something went wrong. Please try again or contact Wided directly.",
     },
   },
 } as const;
