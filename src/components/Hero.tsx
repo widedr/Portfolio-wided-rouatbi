@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import {
   ArrowDown,
   ArrowUpRight,
-  Sparkles,
   Search,
   Layers,
   PenTool,
@@ -214,17 +213,6 @@ export default function Hero() {
               </span>
             </motion.div>
           ))}
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 1.3, type: "spring" }}
-            whileHover={{ rotate: 12, scale: 1.1 }}
-            data-cursor-hover
-            className="absolute -right-3 -top-3 z-10 flex h-14 w-14 items-center justify-center rounded-full bg-yellow shadow-lg shadow-yellow/30 sm:-right-5 sm:-top-5"
-          >
-            <Sparkles className="h-6 w-6 text-purple-deep" />
-          </motion.div>
         </motion.div>
       </div>
 

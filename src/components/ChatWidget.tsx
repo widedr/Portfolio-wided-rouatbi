@@ -68,7 +68,7 @@ export default function ChatWidget() {
         transition={{ duration: 0.5, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.94, transition: { duration: 0.12, ease: "easeOut" } }}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-yellow shadow-lg shadow-yellow/30"
+        className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-violet shadow-lg shadow-violet/30"
       >
         <AnimatePresence mode="wait" initial={false}>
           {open ? (
@@ -80,7 +80,7 @@ export default function ChatWidget() {
               transition={{ duration: 0.15 }}
               className="flex"
             >
-              <X className="h-6 w-6 text-purple-deep" />
+              <X className="h-7 w-7 text-white" />
             </motion.span>
           ) : (
             <motion.span
@@ -91,7 +91,7 @@ export default function ChatWidget() {
               transition={{ duration: 0.15 }}
               className="flex"
             >
-              <Sparkles className="h-6 w-6 text-purple-deep" />
+              <Sparkles className="h-7 w-7 text-white" />
             </motion.span>
           )}
         </AnimatePresence>
@@ -105,12 +105,12 @@ export default function ChatWidget() {
             exit={{ opacity: 0, scale: 0.95, y: 12 }}
             transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
             style={{ transformOrigin: "bottom right" }}
-            className="fixed bottom-24 right-6 z-50 flex h-[min(32rem,70vh)] w-[min(22rem,calc(100vw-3rem))] flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-2xl"
+            className="fixed bottom-28 right-6 z-50 flex h-[min(36rem,75vh)] w-[min(24rem,calc(100vw-3rem))] flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-2xl"
           >
             <div className="flex items-center justify-between border-b border-border px-5 py-4">
               <div className="flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow/15">
-                  <Sparkles className="h-4 w-4 text-yellow" />
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-violet/15">
+                  <Sparkles className="h-4 w-4 text-violet" />
                 </span>
                 <p className="font-display text-sm text-foreground">{t.chat.label}</p>
               </div>
