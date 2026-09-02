@@ -12,6 +12,15 @@ const HOVER_RANGE = 0.25;
 const DRAG_RANGE = 1;
 const TILT_DEG = 22;
 
+// The source photos are plain opaque squares (near-black studio
+// background, no real alpha channel -- attempting to key out the
+// background per-pixel kept eating into dark hair strands). Instead,
+// fade the photo's own rectangular edges into the page with a purely
+// geometric mask, so the boundary dissolves rather than reading as a
+// hard-edged box.
+const PORTRAIT_MASK =
+  "radial-gradient(ellipse 92% 88% at 50% 60%, black 38%, transparent 100%)";
+
 export default function HeroPortrait({
   front,
   side,
@@ -101,6 +110,8 @@ export default function HeroPortrait({
             priority
             sizes="(max-width: 1024px) 380px, 480px"
             className="object-contain object-bottom drop-shadow-2xl"
+            style={{ maskImage: PORTRAIT_MASK, WebkitMaskImage: PORTRAIT_MASK }}
+            unoptimized
             draggable={false}
           />
         </motion.div>
@@ -112,6 +123,8 @@ export default function HeroPortrait({
             fill
             sizes="(max-width: 1024px) 380px, 480px"
             className="object-contain object-bottom drop-shadow-2xl"
+            style={{ maskImage: PORTRAIT_MASK, WebkitMaskImage: PORTRAIT_MASK }}
+            unoptimized
             draggable={false}
           />
         </motion.div>
@@ -126,6 +139,8 @@ export default function HeroPortrait({
             fill
             sizes="(max-width: 1024px) 380px, 480px"
             className="object-contain object-bottom drop-shadow-2xl"
+            style={{ maskImage: PORTRAIT_MASK, WebkitMaskImage: PORTRAIT_MASK }}
+            unoptimized
             draggable={false}
           />
         </motion.div>
@@ -137,6 +152,8 @@ export default function HeroPortrait({
             fill
             sizes="(max-width: 1024px) 380px, 480px"
             className="object-contain object-bottom drop-shadow-2xl"
+            style={{ maskImage: PORTRAIT_MASK, WebkitMaskImage: PORTRAIT_MASK }}
+            unoptimized
             draggable={false}
           />
         </motion.div>
