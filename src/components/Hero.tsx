@@ -1,7 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -18,6 +19,22 @@ import { useT } from "@/lib/LanguageContext";
 
 export default function Hero() {
   const t = useT();
+  const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Breakpoint arrays deliberately span the full [0, 1] scroll range —
+  // framer-motion's hardware-accelerated scroll transforms (used for
+  // opacity/filter/transform style bindings) mishandle ranges that stop
+  // short of 1, replaying the sequence in reverse for the remainder
+  // instead of holding the last value.
+  const initialOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5, 1], [1, 1, 0, 0]);
+  const initialY = useTransform(scrollYProgress, [0, 0.5, 1], [0, -24, -24]);
+  const missionOpacity = useTransform(scrollYProgress, [0, 0.55, 0.8, 1], [0, 0, 1, 1]);
+  const missionY = useTransform(scrollYProgress, [0, 0.55, 1], [24, 24, 0]);
 
   const badges = [
     {
@@ -48,9 +65,15 @@ export default function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       id="top"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-background px-6 pb-8 pt-28 sm:px-10 sm:pb-10 lg:px-16"
+      className={`relative ${prefersReducedMotion ? "" : "min-h-[240svh]"}`}
     >
+      <div
+        className={`${
+          prefersReducedMotion ? "" : "sticky top-0"
+        } flex min-h-[100svh] flex-col overflow-hidden bg-background px-6 pb-8 pt-28 sm:px-10 sm:pb-10 lg:px-16`}
+      >
       {/* Soft mesh-gradient wash — muted echo of the pastel blob in the
           Figma "About me" cover, tuned down for dark mode instead of one
           flat saturated purple panel. */}
@@ -89,40 +112,69 @@ export default function Hero() {
       <div className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
         {/* Left — copy */}
         <div>
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-white/60"
-          >
-            {t.hero.eyebrow}
-          </motion.p>
+          <div className="grid">
+            {/* Initial headline — fades out as the portrait turns */}
+            <motion.div
+              style={
+                prefersReducedMotion ? undefined : { opacity: initialOpacity, y: initialY }
+              }
+              className="[grid-area:1/1]"
+            >
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-white/60"
+              >
+                {t.hero.eyebrow}
+              </motion.p>
 
-          <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            <RevealWords text={t.hero.greeting} className="block text-white/70" />
-            <RevealWords text="Wided Rouatbi" className="block text-gradient" />
-          </h1>
+              <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                <RevealWords text={t.hero.greeting} className="block text-white/70" />
+                <RevealWords text="Wided Rouatbi" className="block text-gradient" />
+              </h1>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-5 inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-surface/90 px-4 py-2.5 shadow-xl backdrop-blur-md"
-          >
-            <Palette className="h-4 w-4 text-violet" />
-            <span className="text-sm font-semibold text-white">
-              {t.hero.role}
-            </span>
-          </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="mt-5 inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-surface/90 px-4 py-2.5 shadow-xl backdrop-blur-md"
+              >
+                <Palette className="h-4 w-4 text-violet" />
+                <span className="text-sm font-semibold text-white">
+                  {t.hero.role}
+                </span>
+              </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
-          >
-            {t.hero.bio}
-          </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.6 }}
+                className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
+              >
+                {t.hero.bio}
+              </motion.p>
+            </motion.div>
+
+            {/* Mission statement — fades in as the portrait turns away */}
+            {!prefersReducedMotion && (
+              <motion.div
+                style={{ opacity: missionOpacity, y: missionY }}
+                className="pointer-events-none [grid-area:1/1]"
+              >
+                <p className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-white/60">
+                  {t.hero.eyebrow}
+                </p>
+                <h2 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                  {t.about.leadPrefix}
+                  <span className="text-gradient">{t.about.leadHighlight}</span>
+                </h2>
+                <p className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
+                  {t.about.bio}
+                </p>
+              </motion.div>
+            )}
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -183,6 +235,7 @@ export default function Hero() {
             side="/images/profile-side.png"
             rear="/images/profile-rear.png"
             alt="Portrait de Wided Rouatbi"
+            progress={scrollYProgress}
           />
 
           {badges.map((b) => (
@@ -235,6 +288,7 @@ export default function Hero() {
           <ArrowDown className="h-4 w-4" />
         </motion.span>
       </motion.a>
+      </div>
     </section>
   );
 }

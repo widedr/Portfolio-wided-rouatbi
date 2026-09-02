@@ -1,163 +1,92 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useTransform, useReducedMotion, type MotionValue } from "framer-motion";
 
-// "turn" is a normalized, signed position of the rotation: 0 = facing
-// forward, +/-1 = fully turned to the side/back. Hover only ever nudges
-// within HOVER_RANGE (front photo stays fully opaque there, just tilts a
-// little for life); dragging unlocks the full front -> side -> back sweep.
-const HOVER_RANGE = 0.25;
-const DRAG_RANGE = 1;
-const TILT_DEG = 22;
-
-// The source photos are plain opaque squares (near-black studio
-// background, no real alpha channel -- attempting to key out the
-// background per-pixel kept eating into dark hair strands). Instead,
-// fade the photo's own rectangular edges into the page with a purely
-// geometric mask, so the boundary dissolves rather than reading as a
-// hard-edged box.
-const PORTRAIT_MASK =
-  "radial-gradient(ellipse 92% 88% at 50% 60%, black 38%, transparent 100%)";
+const TILT_DEG = 26;
 
 export default function HeroPortrait({
   front,
   side,
   rear,
   alt,
+  progress,
 }: {
   front: string;
   side: string;
   rear: string;
   alt: string;
+  progress: MotionValue<number>;
 }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-  const dragStartX = useRef(0);
-  const dragStartTurn = useRef(0);
   const prefersReducedMotion = useReducedMotion();
 
-  const turn = useMotionValue(0);
-  const turnSpring = useSpring(turn, { stiffness: 130, damping: 20, mass: 0.6 });
-  const absTurn = useTransform(turnSpring, (v) => Math.abs(v));
+  // Breakpoint arrays deliberately span the full [0, 1] scroll range —
+  // framer-motion's hardware-accelerated scroll transforms (used for
+  // opacity/filter/transform style bindings) mishandle ranges that stop
+  // short of 1, replaying the sequence in reverse for the remainder
+  // instead of holding the last value.
+  const rotateY = useTransform(progress, [0, 1], [0, TILT_DEG]);
+  const frontOpacity = useTransform(progress, [0, 0.3, 0.5, 1], [1, 1, 0, 0]);
+  const sideOpacity = useTransform(progress, [0, 0.3, 0.55, 0.8, 1], [0, 0, 1, 0, 0]);
+  const rearOpacity = useTransform(progress, [0, 0.6, 0.85, 1], [0, 0, 1, 1]);
+  // A light camera "refocus" pass through the middle of the turn.
+  const blur = useTransform(progress, [0, 0.35, 0.5, 0.65, 1], [0, 3, 4, 3, 0]);
+  const filter = useTransform(blur, (b) => `blur(${b}px)`);
 
-  const rotateY = useTransform(turnSpring, [-1, 1], [-TILT_DEG, TILT_DEG]);
-  const frontOpacity = useTransform(absTurn, [0, 0.3, 0.5], [1, 1, 0]);
-  const sideRightOpacity = useTransform(turnSpring, [0.3, 0.55, 0.8], [0, 1, 0]);
-  const sideLeftOpacity = useTransform(turnSpring, [-0.8, -0.55, -0.3], [0, 1, 0]);
-  const rearOpacity = useTransform(absTurn, [0.6, 0.85, 1], [0, 1, 1]);
-
-  function hoverTargetFor(clientX: number) {
-    if (!containerRef.current) return 0;
-    const rect = containerRef.current.getBoundingClientRect();
-    const relX = (clientX - rect.left) / rect.width - 0.5;
-    return Math.max(-HOVER_RANGE, Math.min(HOVER_RANGE, relX * HOVER_RANGE * 2));
-  }
-
-  function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
-    if (prefersReducedMotion || !containerRef.current) return;
-    if (isDragging.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      const deltaX = e.clientX - dragStartX.current;
-      const next = dragStartTurn.current + (deltaX / (rect.width * 0.7)) * DRAG_RANGE;
-      turn.set(Math.max(-DRAG_RANGE, Math.min(DRAG_RANGE, next)));
-    } else {
-      turn.set(hoverTargetFor(e.clientX));
-    }
-  }
-
-  function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
-    if (prefersReducedMotion) return;
-    isDragging.current = true;
-    dragStartX.current = e.clientX;
-    dragStartTurn.current = turn.get();
-    e.currentTarget.setPointerCapture(e.pointerId);
-  }
-
-  function handlePointerUp(e: React.PointerEvent<HTMLDivElement>) {
-    isDragging.current = false;
-    turn.set(prefersReducedMotion ? 0 : hoverTargetFor(e.clientX));
-    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
-      e.currentTarget.releasePointerCapture(e.pointerId);
-    }
-  }
-
-  function handlePointerLeave() {
-    if (!isDragging.current) turn.set(0);
+  if (prefersReducedMotion) {
+    return (
+      <div className="relative h-full w-full">
+        <Image
+          src={front}
+          alt={alt}
+          fill
+          priority
+          sizes="(max-width: 1024px) 380px, 480px"
+          className="object-contain object-bottom drop-shadow-2xl"
+          unoptimized
+        />
+      </div>
+    );
   }
 
   return (
-    <div
-      ref={containerRef}
-      data-cursor-hover
-      onPointerMove={handlePointerMove}
-      onPointerDown={handlePointerDown}
-      onPointerUp={handlePointerUp}
-      onPointerCancel={handlePointerUp}
-      onPointerLeave={handlePointerLeave}
-      className="relative h-full w-full touch-none select-none cursor-grab active:cursor-grabbing"
+    <motion.div
+      style={{ rotateY, filter, transformPerspective: 1200 }}
+      className="relative h-full w-full"
     >
-      <motion.div
-        style={{ rotateY, transformPerspective: 1200 }}
-        className="relative h-full w-full"
-      >
-        <motion.div style={{ opacity: frontOpacity }} className="absolute inset-0">
-          <Image
-            src={front}
-            alt={alt}
-            fill
-            priority
-            sizes="(max-width: 1024px) 380px, 480px"
-            className="object-contain object-bottom drop-shadow-2xl"
-            style={{ maskImage: PORTRAIT_MASK, WebkitMaskImage: PORTRAIT_MASK }}
-            unoptimized
-            draggable={false}
-          />
-        </motion.div>
-        <motion.div style={{ opacity: sideRightOpacity }} className="absolute inset-0">
-          <Image
-            src={side}
-            alt=""
-            aria-hidden
-            fill
-            sizes="(max-width: 1024px) 380px, 480px"
-            className="object-contain object-bottom drop-shadow-2xl"
-            style={{ maskImage: PORTRAIT_MASK, WebkitMaskImage: PORTRAIT_MASK }}
-            unoptimized
-            draggable={false}
-          />
-        </motion.div>
-        <motion.div
-          style={{ opacity: sideLeftOpacity, transform: "scaleX(-1)" }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={side}
-            alt=""
-            aria-hidden
-            fill
-            sizes="(max-width: 1024px) 380px, 480px"
-            className="object-contain object-bottom drop-shadow-2xl"
-            style={{ maskImage: PORTRAIT_MASK, WebkitMaskImage: PORTRAIT_MASK }}
-            unoptimized
-            draggable={false}
-          />
-        </motion.div>
-        <motion.div style={{ opacity: rearOpacity }} className="absolute inset-0">
-          <Image
-            src={rear}
-            alt=""
-            aria-hidden
-            fill
-            sizes="(max-width: 1024px) 380px, 480px"
-            className="object-contain object-bottom drop-shadow-2xl"
-            style={{ maskImage: PORTRAIT_MASK, WebkitMaskImage: PORTRAIT_MASK }}
-            unoptimized
-            draggable={false}
-          />
-        </motion.div>
+      <motion.div style={{ opacity: frontOpacity }} className="absolute inset-0">
+        <Image
+          src={front}
+          alt={alt}
+          fill
+          priority
+          sizes="(max-width: 1024px) 380px, 480px"
+          className="object-contain object-bottom drop-shadow-2xl"
+          unoptimized
+        />
       </motion.div>
-    </div>
+      <motion.div style={{ opacity: sideOpacity }} className="absolute inset-0">
+        <Image
+          src={side}
+          alt=""
+          aria-hidden
+          fill
+          sizes="(max-width: 1024px) 380px, 480px"
+          className="object-contain object-bottom drop-shadow-2xl"
+          unoptimized
+        />
+      </motion.div>
+      <motion.div style={{ opacity: rearOpacity }} className="absolute inset-0">
+        <Image
+          src={rear}
+          alt=""
+          aria-hidden
+          fill
+          sizes="(max-width: 1024px) 380px, 480px"
+          className="object-contain object-bottom drop-shadow-2xl"
+          unoptimized
+        />
+      </motion.div>
+    </motion.div>
   );
 }
