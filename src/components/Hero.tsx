@@ -2,7 +2,13 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -25,23 +31,21 @@ export default function Hero() {
     target: sectionRef,
     offset: ["start start", "end end"],
   });
+  // Smoothed with a spring so the turn eases and settles instead of
+  // tracking the scrollbar 1:1 — a slower, softer feel on top of the
+  // slower pace from the taller scroll track below.
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 45,
+    damping: 20,
+    mass: 0.6,
+  });
 
-  // Breakpoint arrays deliberately span the full [0, 1] scroll range —
-  // framer-motion's hardware-accelerated scroll transforms (used for
-  // opacity/filter/transform style bindings) mishandle ranges that stop
-  // short of 1, replaying the sequence in reverse for the remainder
-  // instead of holding the last value.
-  const initialOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5, 1], [1, 1, 0, 0]);
-  const initialY = useTransform(scrollYProgress, [0, 0.5, 1], [0, -24, -24]);
-  const missionOpacity = useTransform(scrollYProgress, [0, 0.55, 0.8, 1], [0, 0, 1, 1]);
-  const missionY = useTransform(scrollYProgress, [0, 0.55, 1], [24, 24, 0]);
-  // The CTAs and stats stay visible throughout (never fade — they're always
-  // actionable) but ride the same scroll-driven camera move as the text and
-  // portrait, so the whole block reads as one synchronized turn instead of
-  // a static footer bolted under an animated headline.
-  const ctaY = useTransform(scrollYProgress, [0, 1], [0, -16]);
+  // The text stays put throughout the turn — only the CTAs move, pulling
+  // closer to the bio as the subject turns away, so the whole block reads
+  // as one synchronized camera move instead of a static footer.
+  const ctaY = useTransform(smoothProgress, [0, 1], [0, -28]);
   const ctaScale = useTransform(
-    scrollYProgress,
+    smoothProgress,
     [0, 0.35, 0.5, 0.65, 1],
     [1, 0.985, 0.98, 0.985, 1]
   );
@@ -77,7 +81,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className={`relative ${prefersReducedMotion ? "" : "min-h-[240svh]"}`}
+      className={`relative ${prefersReducedMotion ? "" : "min-h-[340svh]"}`}
     >
       <div
         className={`${
@@ -119,74 +123,45 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
-        {/* Left — copy */}
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-16 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
+        {/* Left — copy. The headline and bio stay fixed through the whole
+            turn; only the CTAs move (see ctaY/ctaScale below), so the
+            portrait's rotation is the thing doing the storytelling. */}
         <div>
-          <div className="grid">
-            {/* Initial headline — fades out as the portrait turns */}
-            <motion.div
-              style={
-                prefersReducedMotion ? undefined : { opacity: initialOpacity, y: initialY }
-              }
-              className="[grid-area:1/1]"
-            >
-              <motion.p
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-white/60"
-              >
-                {t.hero.eyebrow}
-              </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-white/60"
+          >
+            {t.hero.eyebrow}
+          </motion.p>
 
-              <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                <RevealWords text={t.hero.greeting} className="block text-white/70" />
-                <RevealWords text="Wided Rouatbi" className="block text-gradient" />
-              </h1>
+          <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <RevealWords text={t.hero.greeting} className="block text-white/70" />
+            <RevealWords text="Wided Rouatbi" className="block text-gradient" />
+          </h1>
 
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                className="mt-5 inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-surface/90 px-4 py-2.5 shadow-xl backdrop-blur-md"
-              >
-                <Palette className="h-4 w-4 text-violet" />
-                <span className="text-sm font-semibold text-white">
-                  {t.hero.role}
-                </span>
-              </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-5 inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-surface/90 px-4 py-2.5 shadow-xl backdrop-blur-md"
+          >
+            <Palette className="h-4 w-4 text-violet" />
+            <span className="text-sm font-semibold text-white">
+              {t.hero.role}
+            </span>
+          </motion.div>
 
-              <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.6 }}
-                className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
-              >
-                {t.hero.bio}
-              </motion.p>
-            </motion.div>
-
-            {/* Mission statement — fades in as the portrait turns away.
-                Deliberately distinct copy from the About section below,
-                so the two don't read as a duplicated block on scroll. */}
-            {!prefersReducedMotion && (
-              <motion.div
-                style={{ opacity: missionOpacity, y: missionY }}
-                className="pointer-events-none [grid-area:1/1]"
-              >
-                <p className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-white/60">
-                  {t.hero.missionEyebrow}
-                </p>
-                <h2 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  {t.hero.missionPrefix}
-                  <span className="text-gradient">{t.hero.missionHighlight}</span>
-                </h2>
-                <p className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
-                  {t.hero.missionBody}
-                </p>
-              </motion.div>
-            )}
-          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+            className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
+          >
+            {t.hero.bio}
+          </motion.p>
 
           <motion.div style={prefersReducedMotion ? undefined : { y: ctaY, scale: ctaScale }}>
             <motion.div
@@ -249,7 +224,7 @@ export default function Hero() {
             side="/images/profile-side.png"
             rear="/images/profile-rear.png"
             alt="Portrait de Wided Rouatbi"
-            progress={scrollYProgress}
+            progress={smoothProgress}
           />
 
           {badges.map((b) => (
