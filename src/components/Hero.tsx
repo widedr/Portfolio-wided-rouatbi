@@ -40,15 +40,25 @@ export default function Hero() {
     mass: 0.6,
   });
 
-  // The text stays put throughout the turn — only the CTAs move, pulling
-  // closer to the bio as the subject turns away, so the whole block reads
-  // as one synchronized camera move instead of a static footer.
-  const ctaY = useTransform(smoothProgress, [0, 1], [0, -28]);
-  const ctaScale = useTransform(
-    smoothProgress,
-    [0, 0.35, 0.5, 0.65, 1],
-    [1, 0.985, 0.98, 0.985, 1]
+  // The copy reveals in stages tied to the portrait's own turn (front
+  // 0–0.3, side ~0.55–0.8, rear 0.85–1 in HeroPortrait) — each new piece
+  // of text lands as the subject reaches the next pose, instead of
+  // dumping the whole block on screen before the animation even starts.
+  // Reveals are cumulative: once shown, an element stays shown.
+  const roleOpacity = useTransform(smoothProgress, [0.04, 0.2], [0, 1]);
+  const roleY = useTransform(smoothProgress, [0.04, 0.2], [16, 0]);
+
+  const bioOpacity = useTransform(smoothProgress, [0.28, 0.48], [0, 1]);
+  const bioY = useTransform(smoothProgress, [0.28, 0.48], [16, 0]);
+
+  const ctaOpacity = useTransform(smoothProgress, [0.54, 0.7], [0, 1]);
+  const ctaY = useTransform(smoothProgress, [0.54, 0.7], [16, 0]);
+  const ctaPointerEvents = useTransform(smoothProgress, (p) =>
+    p > 0.54 ? "auto" : "none"
   );
+
+  const statsOpacity = useTransform(smoothProgress, [0.78, 0.92], [0, 1]);
+  const statsY = useTransform(smoothProgress, [0.78, 0.92], [16, 0]);
 
   const badges = [
     {
@@ -124,9 +134,10 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-16 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
-        {/* Left — copy. The headline and bio stay fixed through the whole
-            turn; only the CTAs move (see ctaY/ctaScale below), so the
-            portrait's rotation is the thing doing the storytelling. */}
+        {/* Left — copy. Reveals in stages synced to the portrait's turn;
+            see the roleOpacity/bioOpacity/ctaOpacity/statsOpacity block
+            above. Reduced-motion shows everything immediately (no style
+            override = default full opacity, no offset). */}
         <div>
           <motion.p
             initial={{ opacity: 0, y: 8 }}
@@ -143,9 +154,7 @@ export default function Hero() {
           </h1>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            style={prefersReducedMotion ? undefined : { opacity: roleOpacity, y: roleY }}
             className="mt-5 inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-surface/90 px-4 py-2.5 shadow-xl backdrop-blur-md"
           >
             <Palette className="h-4 w-4 text-violet" />
@@ -155,59 +164,55 @@ export default function Hero() {
           </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
+            style={prefersReducedMotion ? undefined : { opacity: bioOpacity, y: bioY }}
             className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
           >
             {t.hero.bio}
           </motion.p>
 
-          <motion.div style={prefersReducedMotion ? undefined : { y: ctaY, scale: ctaScale }}>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.75 }}
-              className="mt-8 flex flex-wrap items-center gap-4"
-            >
-              <Magnetic>
-                <Link
-                  href="/projects"
-                  data-cursor-hover
-                  className="group inline-flex items-center gap-2 rounded-full bg-yellow px-6 py-3 text-sm font-semibold text-purple-deep transition-transform"
-                >
-                  {t.hero.ctaProjects}
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
-              </Magnetic>
-              <Magnetic>
-                <a
-                  href="mailto:widedrouatbi@gmail.com"
-                  data-cursor-hover
-                  className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-yellow hover:text-yellow"
-                >
-                  {t.hero.ctaContact}
-                </a>
-              </Magnetic>
-            </motion.div>
+          <motion.div
+            style={
+              prefersReducedMotion
+                ? undefined
+                : { opacity: ctaOpacity, y: ctaY, pointerEvents: ctaPointerEvents }
+            }
+            className="mt-8 flex flex-wrap items-center gap-4"
+          >
+            <Magnetic>
+              <Link
+                href="/projects"
+                data-cursor-hover
+                className="group inline-flex items-center gap-2 rounded-full bg-yellow px-6 py-3 text-sm font-semibold text-purple-deep transition-transform"
+              >
+                {t.hero.ctaProjects}
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="mailto:widedrouatbi@gmail.com"
+                data-cursor-hover
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-yellow hover:text-yellow"
+              >
+                {t.hero.ctaContact}
+              </a>
+            </Magnetic>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.9 }}
-              className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8"
-            >
-              {t.hero.stats.map((s) => (
-                <div key={s.label}>
-                  <p className="font-display text-2xl font-bold text-yellow sm:text-3xl">
-                    {s.value}
-                  </p>
-                  <p className="mt-1 text-xs leading-relaxed text-white/50">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
-            </motion.div>
+          <motion.div
+            style={prefersReducedMotion ? undefined : { opacity: statsOpacity, y: statsY }}
+            className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8"
+          >
+            {t.hero.stats.map((s) => (
+              <div key={s.label}>
+                <p className="font-display text-2xl font-bold text-yellow sm:text-3xl">
+                  {s.value}
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-white/50">
+                  {s.label}
+                </p>
+              </div>
+            ))}
           </motion.div>
         </div>
 
