@@ -35,6 +35,16 @@ export default function Hero() {
   const initialY = useTransform(scrollYProgress, [0, 0.5, 1], [0, -24, -24]);
   const missionOpacity = useTransform(scrollYProgress, [0, 0.55, 0.8, 1], [0, 0, 1, 1]);
   const missionY = useTransform(scrollYProgress, [0, 0.55, 1], [24, 24, 0]);
+  // The CTAs and stats stay visible throughout (never fade — they're always
+  // actionable) but ride the same scroll-driven camera move as the text and
+  // portrait, so the whole block reads as one synchronized turn instead of
+  // a static footer bolted under an animated headline.
+  const ctaY = useTransform(scrollYProgress, [0, 1], [0, -16]);
+  const ctaScale = useTransform(
+    scrollYProgress,
+    [0, 0.35, 0.5, 0.65, 1],
+    [1, 0.985, 0.98, 0.985, 1]
+  );
 
   const badges = [
     {
@@ -156,69 +166,73 @@ export default function Hero() {
               </motion.p>
             </motion.div>
 
-            {/* Mission statement — fades in as the portrait turns away */}
+            {/* Mission statement — fades in as the portrait turns away.
+                Deliberately distinct copy from the About section below,
+                so the two don't read as a duplicated block on scroll. */}
             {!prefersReducedMotion && (
               <motion.div
                 style={{ opacity: missionOpacity, y: missionY }}
                 className="pointer-events-none [grid-area:1/1]"
               >
                 <p className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-white/60">
-                  {t.hero.eyebrow}
+                  {t.hero.missionEyebrow}
                 </p>
                 <h2 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  {t.about.leadPrefix}
-                  <span className="text-gradient">{t.about.leadHighlight}</span>
+                  {t.hero.missionPrefix}
+                  <span className="text-gradient">{t.hero.missionHighlight}</span>
                 </h2>
                 <p className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
-                  {t.about.bio}
+                  {t.hero.missionBody}
                 </p>
               </motion.div>
             )}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.75 }}
-            className="mt-8 flex flex-wrap items-center gap-4"
-          >
-            <Magnetic>
-              <Link
-                href="/projects"
-                data-cursor-hover
-                className="group inline-flex items-center gap-2 rounded-full bg-yellow px-6 py-3 text-sm font-semibold text-purple-deep transition-transform"
-              >
-                {t.hero.ctaProjects}
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-            </Magnetic>
-            <Magnetic>
-              <a
-                href="mailto:widedrouatbi@gmail.com"
-                data-cursor-hover
-                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-yellow hover:text-yellow"
-              >
-                {t.hero.ctaContact}
-              </a>
-            </Magnetic>
-          </motion.div>
+          <motion.div style={prefersReducedMotion ? undefined : { y: ctaY, scale: ctaScale }}>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.75 }}
+              className="mt-8 flex flex-wrap items-center gap-4"
+            >
+              <Magnetic>
+                <Link
+                  href="/projects"
+                  data-cursor-hover
+                  className="group inline-flex items-center gap-2 rounded-full bg-yellow px-6 py-3 text-sm font-semibold text-purple-deep transition-transform"
+                >
+                  {t.hero.ctaProjects}
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href="mailto:widedrouatbi@gmail.com"
+                  data-cursor-hover
+                  className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-yellow hover:text-yellow"
+                >
+                  {t.hero.ctaContact}
+                </a>
+              </Magnetic>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.9 }}
-            className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8"
-          >
-            {t.hero.stats.map((s) => (
-              <div key={s.label}>
-                <p className="font-display text-2xl font-bold text-yellow sm:text-3xl">
-                  {s.value}
-                </p>
-                <p className="mt-1 text-xs leading-relaxed text-white/50">
-                  {s.label}
-                </p>
-              </div>
-            ))}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.9 }}
+              className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8"
+            >
+              {t.hero.stats.map((s) => (
+                <div key={s.label}>
+                  <p className="font-display text-2xl font-bold text-yellow sm:text-3xl">
+                    {s.value}
+                  </p>
+                  <p className="mt-1 text-xs leading-relaxed text-white/50">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
 
@@ -227,7 +241,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.92, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto aspect-[4/5] w-full max-w-sm self-end lg:max-w-none"
+          className="relative mx-auto aspect-square w-full max-w-md self-end lg:max-w-lg"
         >
           <div className="absolute inset-x-6 inset-y-10 rounded-full bg-gradient-to-br from-violet/40 via-pink/20 to-yellow/30 blur-3xl" />
           <HeroPortrait

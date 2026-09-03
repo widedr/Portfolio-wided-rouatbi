@@ -42,7 +42,7 @@ export default function HeroPortrait({
           fill
           priority
           sizes="(max-width: 1024px) 380px, 480px"
-          className="object-contain object-bottom drop-shadow-2xl"
+          className="object-contain drop-shadow-2xl"
           unoptimized
         />
       </div>
@@ -61,7 +61,7 @@ export default function HeroPortrait({
           fill
           priority
           sizes="(max-width: 1024px) 380px, 480px"
-          className="object-contain object-bottom drop-shadow-2xl"
+          className="object-contain drop-shadow-2xl"
           unoptimized
         />
       </motion.div>
@@ -72,7 +72,7 @@ export default function HeroPortrait({
           aria-hidden
           fill
           sizes="(max-width: 1024px) 380px, 480px"
-          className="object-contain object-bottom drop-shadow-2xl"
+          className="object-contain drop-shadow-2xl"
           unoptimized
         />
       </motion.div>
@@ -83,7 +83,7 @@ export default function HeroPortrait({
           aria-hidden
           fill
           sizes="(max-width: 1024px) 380px, 480px"
-          className="object-contain object-bottom drop-shadow-2xl"
+          className="object-contain drop-shadow-2xl"
           unoptimized
         />
       </motion.div>

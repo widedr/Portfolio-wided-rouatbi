@@ -34,6 +34,11 @@ export const translations = {
         ai: "AI Tools",
       },
       scrollCue: "Let's Get started",
+      missionEyebrow: "Ma mission",
+      missionPrefix: "Concevoir avec précision, ",
+      missionHighlight: "augmenter avec l'intelligence artificielle.",
+      missionBody:
+        "Je transforme des idées complexes en produits numériques clairs et intuitifs — en tissant l'IA dans chaque étape, de la recherche au prototypage, pour des expériences qui comptent vraiment.",
     },
     about: {
       number: "01",
@@ -207,6 +212,11 @@ export const translations = {
         ai: "AI Tools",
       },
       scrollCue: "Let's Get started",
+      missionEyebrow: "My Mission",
+      missionPrefix: "Designing with precision, ",
+      missionHighlight: "augmented by artificial intelligence.",
+      missionBody:
+        "I turn complex ideas into clear, intuitive digital products — weaving AI into every step, from research to prototyping, to build experiences that truly matter.",
     },
     about: {
       number: "01",
