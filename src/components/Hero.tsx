@@ -241,7 +241,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.92, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto aspect-square w-full max-w-md self-end lg:max-w-lg"
+          className="relative mx-auto aspect-square w-full max-w-md self-end lg:max-w-none"
         >
           <div className="absolute inset-x-6 inset-y-10 rounded-full bg-gradient-to-br from-violet/40 via-pink/20 to-yellow/30 blur-3xl" />
           <HeroPortrait
