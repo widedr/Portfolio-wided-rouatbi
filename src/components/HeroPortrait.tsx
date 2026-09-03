@@ -29,8 +29,9 @@ export default function HeroPortrait({
   const frontOpacity = useTransform(progress, [0, 0.3, 0.5, 1], [1, 1, 0, 0]);
   const sideOpacity = useTransform(progress, [0, 0.3, 0.55, 0.8, 1], [0, 0, 1, 0, 0]);
   const rearOpacity = useTransform(progress, [0, 0.6, 0.85, 1], [0, 0, 1, 1]);
-  // A light camera "refocus" pass through the middle of the turn.
-  const blur = useTransform(progress, [0, 0.35, 0.5, 0.65, 1], [0, 3, 4, 3, 0]);
+  // A light camera "refocus" pass through the middle of the turn — kept
+  // subtle so the side profile stays legible rather than washing out.
+  const blur = useTransform(progress, [0, 0.35, 0.5, 0.65, 1], [0, 1, 1.2, 1, 0]);
   const filter = useTransform(blur, (b) => `blur(${b}px)`);
 
   if (prefersReducedMotion) {

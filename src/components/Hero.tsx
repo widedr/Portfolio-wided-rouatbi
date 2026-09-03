@@ -265,7 +265,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}
-        className="group absolute bottom-6 right-6 z-20 flex flex-col items-center gap-2 sm:right-10 lg:right-16"
+        className="group absolute bottom-24 right-6 z-20 flex flex-col items-center gap-2 sm:right-10 lg:right-16"
       >
         <span
           style={{ writingMode: "vertical-rl" }}
