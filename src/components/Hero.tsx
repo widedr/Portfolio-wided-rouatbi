@@ -1,7 +1,14 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -18,6 +25,40 @@ import { useT } from "@/lib/LanguageContext";
 
 export default function Hero() {
   const t = useT();
+  const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+  // Smoothed with a spring so the turn eases and settles instead of
+  // tracking the scrollbar 1:1 — a slower, softer feel on top of the
+  // slower pace from the taller scroll track below.
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 45,
+    damping: 20,
+    mass: 0.6,
+  });
+
+  // The copy reveals in stages tied to the portrait's own turn (front
+  // 0–0.3, side ~0.55–0.8, rear 0.85–1 in HeroPortrait) — each new piece
+  // of text lands as the subject reaches the next pose, instead of
+  // dumping the whole block on screen before the animation even starts.
+  // Reveals are cumulative: once shown, an element stays shown.
+  const roleOpacity = useTransform(smoothProgress, [0.04, 0.2], [0, 1]);
+  const roleY = useTransform(smoothProgress, [0.04, 0.2], [16, 0]);
+
+  const bioOpacity = useTransform(smoothProgress, [0.28, 0.48], [0, 1]);
+  const bioY = useTransform(smoothProgress, [0.28, 0.48], [16, 0]);
+
+  const ctaOpacity = useTransform(smoothProgress, [0.54, 0.7], [0, 1]);
+  const ctaY = useTransform(smoothProgress, [0.54, 0.7], [16, 0]);
+  const ctaPointerEvents = useTransform(smoothProgress, (p) =>
+    p > 0.54 ? "auto" : "none"
+  );
+
+  const statsOpacity = useTransform(smoothProgress, [0.78, 0.92], [0, 1]);
+  const statsY = useTransform(smoothProgress, [0.78, 0.92], [16, 0]);
 
   const badges = [
     {
@@ -48,9 +89,15 @@ export default function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       id="top"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-background px-6 pb-8 pt-28 sm:px-10 sm:pb-10 lg:px-16"
+      className={`relative ${prefersReducedMotion ? "" : "min-h-[340svh]"}`}
     >
+      <div
+        className={`${
+          prefersReducedMotion ? "" : "sticky top-0"
+        } flex min-h-[100svh] flex-col overflow-hidden bg-background px-6 pb-8 pt-28 sm:px-10 sm:pb-10 lg:px-16`}
+      >
       {/* Soft mesh-gradient wash — muted echo of the pastel blob in the
           Figma "About me" cover, tuned down for dark mode instead of one
           flat saturated purple panel. */}
@@ -86,8 +133,11 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
-        {/* Left — copy */}
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl flex-1 items-center gap-16 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
+        {/* Left — copy. Reveals in stages synced to the portrait's turn;
+            see the roleOpacity/bioOpacity/ctaOpacity/statsOpacity block
+            above. Reduced-motion shows everything immediately (no style
+            override = default full opacity, no offset). */}
         <div>
           <motion.p
             initial={{ opacity: 0, y: 8 }}
@@ -104,9 +154,7 @@ export default function Hero() {
           </h1>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            style={prefersReducedMotion ? undefined : { opacity: roleOpacity, y: roleY }}
             className="mt-5 inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-surface/90 px-4 py-2.5 shadow-xl backdrop-blur-md"
           >
             <Palette className="h-4 w-4 text-violet" />
@@ -116,18 +164,18 @@ export default function Hero() {
           </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
+            style={prefersReducedMotion ? undefined : { opacity: bioOpacity, y: bioY }}
             className="mt-6 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
           >
             {t.hero.bio}
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.75 }}
+            style={
+              prefersReducedMotion
+                ? undefined
+                : { opacity: ctaOpacity, y: ctaY, pointerEvents: ctaPointerEvents }
+            }
             className="mt-8 flex flex-wrap items-center gap-4"
           >
             <Magnetic>
@@ -152,9 +200,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.9 }}
+            style={prefersReducedMotion ? undefined : { opacity: statsOpacity, y: statsY }}
             className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8"
           >
             {t.hero.stats.map((s) => (
@@ -175,10 +221,16 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.92, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto aspect-[4/5] w-full max-w-sm self-end lg:max-w-none"
+          className="relative mx-auto aspect-square w-full max-w-md self-end lg:max-w-none"
         >
           <div className="absolute inset-x-6 inset-y-10 rounded-full bg-gradient-to-br from-violet/40 via-pink/20 to-yellow/30 blur-3xl" />
-          <HeroPortrait src="/images/profile-3d.png" alt="Portrait 3D de Wided Rouatbi" />
+          <HeroPortrait
+            front="/images/profile-front.png"
+            side="/images/profile-side.png"
+            rear="/images/profile-rear.png"
+            alt="Portrait de Wided Rouatbi"
+            progress={smoothProgress}
+          />
 
           {badges.map((b) => (
             <motion.div
@@ -213,7 +265,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}
-        className="group absolute bottom-6 right-6 z-20 flex flex-col items-center gap-2 sm:right-10 lg:right-16"
+        className="group absolute bottom-24 right-6 z-20 flex flex-col items-center gap-2 sm:right-10 lg:right-16"
       >
         <span
           style={{ writingMode: "vertical-rl" }}
@@ -230,6 +282,7 @@ export default function Hero() {
           <ArrowDown className="h-4 w-4" />
         </motion.span>
       </motion.a>
+      </div>
     </section>
   );
 }
