@@ -36,7 +36,7 @@ export const translations = {
       scrollCue: "Let's Get started",
       positioningLine: "Full Stack Senior Designer (AI-Augmented / AI-Native)",
       mobilityNote:
-        "Ouverte à la relocation en France — sponsoring de visa / permis de travail nécessaire",
+        "Ouverte à la relocation — sponsoring de visa / permis de travail nécessaire",
     },
     about: {
       number: "01",
@@ -224,7 +224,7 @@ export const translations = {
       scrollCue: "Let's Get started",
       positioningLine: "Full Stack Senior Designer (AI-Augmented / AI-Native)",
       mobilityNote:
-        "Open to relocating to France — visa / work permit sponsorship required",
+        "Open to relocating — visa / work permit sponsorship required",
     },
     about: {
       number: "01",
