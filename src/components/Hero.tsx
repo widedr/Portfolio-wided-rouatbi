@@ -17,6 +17,7 @@ import {
   PenTool,
   Bot,
   Palette,
+  MapPin,
 } from "lucide-react";
 import { RevealWords } from "./motion/Reveal";
 import Magnetic from "./motion/Magnetic";
@@ -152,6 +153,25 @@ export default function Hero() {
             <RevealWords text={t.hero.greeting} className="block text-white/70" />
             <RevealWords text="Wided Rouatbi" className="block text-gradient" />
           </h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="mt-2 text-base font-medium text-white/80 sm:text-lg"
+          >
+            {t.hero.positioningLine}
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mt-2 flex items-center gap-1.5 text-xs text-white/50"
+          >
+            <MapPin className="h-3.5 w-3.5 shrink-0" />
+            {t.hero.mobilityNote}
+          </motion.p>
 
           <motion.div
             style={prefersReducedMotion ? undefined : { opacity: roleOpacity, y: roleY }}

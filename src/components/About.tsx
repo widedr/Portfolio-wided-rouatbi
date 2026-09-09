@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, PenTool, Wrench, Sparkles } from "lucide-react";
+import { Search, PenTool, Wrench, Sparkles, CheckCircle2 } from "lucide-react";
 import { FadeUp, RevealWords } from "./motion/Reveal";
 import { useT } from "@/lib/LanguageContext";
 
@@ -90,6 +90,27 @@ export default function About() {
             })}
           </div>
         </div>
+
+        <FadeUp delay={0.1}>
+          <div className="mt-16 border-t border-border pt-12">
+            <h3 className="font-display text-xl text-foreground sm:text-2xl">
+              {t.about.coreStrengthsTitle}
+            </h3>
+            <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+              {t.about.coreStrengths.map((strength) => (
+                <li
+                  key={strength}
+                  className="flex items-start gap-3 rounded-2xl border border-border bg-surface/50 p-4"
+                >
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-violet" />
+                  <span className="text-sm leading-relaxed text-muted">
+                    {strength}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </FadeUp>
       </div>
 
       <div className="mt-24 overflow-hidden border-y border-border py-6">

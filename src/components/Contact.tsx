@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Mail, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, Phone, Download } from "lucide-react";
 import { RevealWords, FadeUp } from "./motion/Reveal";
 import Magnetic from "./motion/Magnetic";
 import { useT } from "@/lib/LanguageContext";
@@ -110,6 +110,32 @@ export default function Contact() {
                 className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-foreground transition-colors hover:border-violet"
               >
                 <GithubIcon className="h-4 w-4" /> {t.contact.github}
+              </a>
+            </Magnetic>
+          </div>
+        </FadeUp>
+
+        <FadeUp delay={0.3}>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <span className="text-sm text-muted">{t.footer.downloadCv}</span>
+            <Magnetic>
+              <a
+                href="/cv/wided-rouatbi-cv-fr.pdf"
+                download
+                data-cursor-hover
+                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm text-foreground transition-colors hover:border-violet"
+              >
+                <Download className="h-3.5 w-3.5" /> {t.footer.downloadCvFr}
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="/cv/wided-rouatbi-cv-en.pdf"
+                download
+                data-cursor-hover
+                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm text-foreground transition-colors hover:border-violet"
+              >
+                <Download className="h-3.5 w-3.5" /> {t.footer.downloadCvEn}
               </a>
             </Magnetic>
           </div>

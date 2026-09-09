@@ -34,6 +34,9 @@ export const translations = {
         ai: "AI Tools",
       },
       scrollCue: "Let's Get started",
+      positioningLine: "Full Stack Senior Designer (AI-Augmented / AI-Native)",
+      mobilityNote:
+        "Ouverte à la relocation — sponsoring de visa / permis de travail nécessaire",
     },
     about: {
       number: "01",
@@ -102,6 +105,15 @@ export const translations = {
         "Fintech",
         "E-commerce",
       ],
+      coreStrengthsTitle: "Points forts",
+      coreStrengths: [
+        "Pratique de design augmentée par l'IA : intègre des outils IA (Figma AI, prototypage génératif, spécifications assistées par LLM) pour accélérer le passage de l'insight au prototype haute-fidélité — notamment Mathis BS, plateforme SaaS de gestion fiscale immobilière pour bailleurs sociaux, conçu et développé en autonomie.",
+        "Design systems à l'échelle : conçoit et fait évoluer des systèmes de design cohérents sur plusieurs verticales clients (banque, e-commerce, voyage, fiscalité immobilière).",
+        "Résolution de problèmes par la recherche : transforme entretiens utilisateurs, tests d'usabilité et analyse concurrentielle en décisions de design argumentées.",
+        "Collaboration transverse : travaille en temps réel avec les équipes produit et développement sur des parcours utilisateurs complexes et à fort enjeu.",
+        "Mentorat & leadership design : forme et encadre designers juniors et stagiaires ; a enseigné l'UX/UI design au niveau universitaire.",
+        "Collaboration multiculturelle : évolue en arabe, français et anglais auprès d'équipes et de clients internationaux, et est aujourd'hui en démarche de relocation vers la France.",
+      ],
     },
     experience: {
       number: "02",
@@ -160,6 +172,9 @@ export const translations = {
     footer: {
       copyright: (year: number) =>
         `© ${year} Wided Rouatbi. Conçu & animé avec soin.`,
+      downloadCv: "Télécharger le CV",
+      downloadCvFr: "CV (FR)",
+      downloadCvEn: "CV (EN)",
     },
     chat: {
       label: "Assistant IA",
@@ -207,6 +222,9 @@ export const translations = {
         ai: "AI Tools",
       },
       scrollCue: "Let's Get started",
+      positioningLine: "Full Stack Senior Designer (AI-Augmented / AI-Native)",
+      mobilityNote:
+        "Open to relocating — visa / work permit sponsorship required",
     },
     about: {
       number: "01",
@@ -275,6 +293,15 @@ export const translations = {
         "Fintech",
         "E-commerce",
       ],
+      coreStrengthsTitle: "Core Strengths",
+      coreStrengths: [
+        "AI-augmented design practice: integrates AI tools (Figma AI, generative prototyping, LLM-assisted specs) into the design process to move faster from insight to high-fidelity prototype — including Mathis BS, a SaaS platform for real-estate tax management for social housing providers, built and shipped independently.",
+        "Design systems at scale: builds and evolves coherent design systems across multiple client verticals (banking, e-commerce, travel, real-estate taxation).",
+        "Research-driven problem solving: turns user interviews, usability testing and competitive analysis into well-argued design decisions.",
+        "Cross-functional collaboration: works in real time with product and engineering teams on complex, high-stakes user journeys.",
+        "Mentorship & design leadership: trains and mentors junior designers and interns; has taught UX/UI design at university level.",
+        "Cross-cultural collaboration: works in Arabic, French and English with international teams and clients, and is currently pursuing relocation to France.",
+      ],
     },
     experience: {
       number: "02",
@@ -333,6 +360,9 @@ export const translations = {
     footer: {
       copyright: (year: number) =>
         `© ${year} Wided Rouatbi. Designed & animated with care.`,
+      downloadCv: "Download CV",
+      downloadCvFr: "CV (FR)",
+      downloadCvEn: "CV (EN)",
     },
     chat: {
       label: "AI Assistant",
