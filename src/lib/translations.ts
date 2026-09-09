@@ -112,6 +112,7 @@ export const translations = {
         "Résolution de problèmes par la recherche : transforme entretiens utilisateurs, tests d'usabilité et analyse concurrentielle en décisions de design argumentées.",
         "Collaboration transverse : travaille en temps réel avec les équipes produit et développement sur des parcours utilisateurs complexes et à fort enjeu.",
         "Mentorat & leadership design : forme et encadre designers juniors et stagiaires ; a enseigné l'UX/UI design au niveau universitaire.",
+        "Collaboration multiculturelle : évolue en arabe, français et anglais auprès d'équipes et de clients internationaux, et est aujourd'hui en démarche de relocation vers la France.",
       ],
     },
     experience: {
@@ -299,6 +300,7 @@ export const translations = {
         "Research-driven problem solving: turns user interviews, usability testing and competitive analysis into well-argued design decisions.",
         "Cross-functional collaboration: works in real time with product and engineering teams on complex, high-stakes user journeys.",
         "Mentorship & design leadership: trains and mentors junior designers and interns; has taught UX/UI design at university level.",
+        "Cross-cultural collaboration: works in Arabic, French and English with international teams and clients, and is currently pursuing relocation to France.",
       ],
     },
     experience: {
